@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tasks QA Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <div class="row">
+      <h1>Tasks QA Demo</h1>
+      <nav class="nav">
+        <a href="#app" class="nav-link">App</a>
+        <a href="#about" class="nav-link">About</a>
+      </nav>
+    </div>
+    <p class="muted">
+      Навчальний сайт для тестування (ЛР1). Працює у браузері, без інсталяції.
+    </p>
+  </header>
+
+  <main class="container">
+    <section id="app" class="card">
+      <h2>Login</h2>
+
+      <div class="grid-2">
+        <label class="field">
+          <span>Email</span>
+          <input id="email" type="email" placeholder="student@example.com" autocomplete="off" />
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input id="password" type="password" placeholder="••••••••" autocomplete="off" />
+        </label>
+      </div>
+
+      <div class="row">
+        <button id="btnLogin">Login</button>
+        <span id="loginState" class="muted"></span>
+      </div>
+
+      <hr />
+
+      <h2>Tasks</h2>
+
+      <div class="row">
+        <label class="field grow">
+          <span>Title</span>
+          <input id="taskTitle" type="text" placeholder="Напр., Купити батарейки" />
+        </label>
+        <button id="btnAdd">Add</button>
+      </div>
+
+      <div class="row">
+        <label class="field grow">
+          <span>Search</span>
+          <input id="search" type="text" placeholder="Пошук задач..." />
+        </label>
+      </div>
+
+      <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+      <ul id="tasks" class="tasks"></ul>
+
+      <p class="muted small">
+        ЛР1: перевірте, що базовий UI працює: логін (демо), додавання задач, пошук, відмітка виконання.
+      </p>
+    </section>
+
+    <section id="about" class="card">
+      <h2>About (спрощені вимоги)</h2>
+      <ol class="reqs">
+        <li>Користувач може “увійти” за email+password. Після входу має відображатися статус входу.</li>
+        <li>Користувач може додати задачу з Title.</li>
+        <li>Користувач може позначити задачу як виконану (toggle).</li>
+        <li>Пошук фільтрує список задач за входженням рядка у Title.</li>
+        <li>Система показує повідомлення про успіх/помилку.</li>
+      </ol>
+      <p class="muted small">
+        Примітка: це навчальний проєкт. Частину функцій та дефектів будемо додавати по лабораторних.
+      </p>
+    </section>
+  </main>
+
+  <footer class="container muted small">
+    © Tasks QA Demo. Для навчальних цілей.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
