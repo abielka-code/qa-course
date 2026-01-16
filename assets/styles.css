@@ -71,6 +71,6 @@ code, pre{
 /* Fallback styling for options (works in many browsers, not guaranteed everywhere) */
 select option,
 select optgroup {
-  background-color: #0b1220; /* темний фон списку */
-  color: #e6edf3;            /* світлий читабельний текст */
+  background-color: #0b1220 !important; /* темний фон списку */
+  color: #e6edf3 !important;            /* світлий читабельний текст */
 }
