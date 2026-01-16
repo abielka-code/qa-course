@@ -68,6 +68,9 @@ code, pre{
 }
 /* Fix: readable <select> dropdown on dark theme (Chrome/Windows) */
 
-select {
-  color-scheme: dark;
+/* Fallback styling for options (works in many browsers, not guaranteed everywhere) */
+select option,
+select optgroup {
+  background-color: #0b1220; /* темний фон списку */
+  color: #e6edf3;            /* світлий читабельний текст */
 }
