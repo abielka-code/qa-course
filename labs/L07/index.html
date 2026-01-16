@@ -1,81 +1,56 @@
-ЛР6 — Еталон: запити, очікувані відповіді та “особливості” API
-1. Очікуваний результат студентської роботи
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ЛР7 — API сценарії</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Лабораторна робота №7</h1>
+    <p class="muted">Розробка API-сценаріїв тестування.</p>
+    <p><a href="../../">← Назад до меню</a></p>
+  </header>
 
-Студент повинен здати:
+  <main class="container card">
+    <h2>Мета</h2>
+    <p>
+      Навчитися створювати API-сценарії тестування (послідовності запитів),
+      визначати контрольні точки та перевірки між кроками сценарію,
+      аналізувати статус-коди і дані відповідей.
+    </p>
 
-таблицю 10+ HTTP-запитів;
+    <h2>Навчальний ресурс</h2>
+    <p class="muted">
+      У роботі використовується “API Scenario Runner” — інструмент, який виконує готові сценарії.
+      Студенти запускають сценарій, аналізують кожен крок та фіксують результати у звіті.
+    </p>
 
-по кожному запиту: Method, URL, Body (якщо потрібно), Expected/Actual status;
+    <p><a class="btn" href="../../targets/L07/">Відкрити API Scenario Runner (ЛР7)</a></p>
 
-6+ скріншотів;
+    <h2>Що потрібно зробити</h2>
+    <ol>
+      <li>Відкрити Runner і прочитати “About / Scenario Rules”.</li>
+      <li>Виконати <strong>мінімум 5 сценаріїв</strong>.</li>
+      <li>Для кожного сценарію заповнити таблицю: крок → метод → endpoint → очікування → фактичний результат.</li>
+      <li>Зробити скріншоти виконання (мінімум <strong>6</strong>).</li>
+      <li>Оформити звіт і висновок.</li>
+    </ol>
 
-висновок.
+    <h2>Що здати</h2>
+    <ul>
+      <li>Звіт <strong>ЛР7</strong></li>
+      <li>Заповнені сценарії (5 шт.) з перевірками</li>
+      <li>Скріншоти 6+</li>
+      <li>Назва файлу: <code>Група_Прізвище_ЛР07.pdf</code></li>
+    </ul>
 
-2. Еталонний набір запитів (12 шт.)
-GET
-
-GET /api/products → 200, масив товарів
-
-GET /api/products/1 → 200, товар id=1
-
-GET /api/products/999 → 404, Product not found
-
-POST products
-
-POST /api/products (name+price) → 201, створений товар
-
-POST /api/products без name → 400
-
-POST /api/products price=-5 → 400
-
-PUT
-
-PUT /api/products/2 {"price":99} → 200, оновлений товар
-
-PUT /api/products/999 {"price":10} → 404
-
-DELETE
-
-DELETE /api/products/3 → 204
-
-GET /api/products/3 → 404 (після видалення)
-
-LOGIN
-
-POST /api/login admin/1234 → 200, token
-
-POST /api/login admin/0000 → 401
-
-3. Закладені “особливості” (Observation)
-
-Це не обов’язково як баги, але студент може коректно зафіксувати як Observation.
-
-OBS-01: POST /api/products не повертає Location header
-
-У реальних REST API після 201 може бути Location: /api/products/{id}.
-
-Тут header не передається (Observation).
-
-OBS-02: PUT дозволяє часткове оновлення
-
-PUT оновлює лише те поле, яке передано.
-
-Це ближче до PATCH, але в навчальному API дозволено.
-
-Можна описати як Observation (не критично).
-
-OBS-03: DELETE повертає тіло відповіді при статусі 204
-
-204 No Content не повинен містити body.
-
-Тут повертається { "message": "Deleted" } → Observation або Fail (якщо трактувати строго).
-
-4. Мінімум для зарахування
-
-10 коректно виконаних запитів
-
-таблиця заповнена повністю
-
-6 скріншотів
-
-висновок
+    <h2>Шаблон таблиці для сценарію</h2>
+    <pre>
+| Step | Method | URL | Request Body | Expected | Actual | Status |
+|------|--------|-----|--------------|----------|--------|--------|
+    </pre>
+  </main>
+</body>
+</html>

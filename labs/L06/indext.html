@@ -1,96 +1,55 @@
-ЛР5 — Еталон: очікувані дефекти та приклади баг-репортів
-1. Закладені дефекти (очікувані)
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ЛР6 — HTTP запити до API</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Лабораторна робота №6</h1>
+    <p class="muted">Виконання HTTP-запитів до API.</p>
+    <p><a href="../../">← Назад до меню</a></p>
+  </header>
 
-У target-сайті ЛР5 гарантовано можна знайти щонайменше 6 дефектів.
+  <main class="container card">
+    <h2>Мета</h2>
+    <p>
+      Навчитися виконувати HTTP-запити до API (GET, POST, PUT, DELETE),
+      аналізувати статус-коди та тіло відповіді, фіксувати результати у звіті.
+    </p>
 
-D-01. Login пропускає неправильний пароль (логічна помилка OR)
+    <h2>Навчальний сайт для роботи з API</h2>
+    <p class="muted">
+      У цій лабораторній використовується “API Console” — вбудований симулятор API.
+      Ви не пишете код, а відправляєте запити через форму, як у Postman.
+    </p>
 
-Вхід успішний, якщо username=admin або password=1234
+    <p><a class="btn" href="../../targets/L06/">Відкрити API Console (ЛР6)</a></p>
 
-Має бути AND.
+    <h2>Що потрібно зробити</h2>
+    <ol>
+      <li>Відкрити API Console і прочитати блок “About / API Specification”.</li>
+      <li>Виконати мінімум <strong>10 HTTP-запитів</strong> (GET/POST/PUT/DELETE).</li>
+      <li>Для кожного запиту зафіксувати: метод, URL, тіло запиту (якщо є), статус, відповідь.</li>
+      <li>Зробити скріншоти: мінімум <strong>6</strong>.</li>
+      <li>Оформити звіт і зробити висновок.</li>
+    </ol>
 
-D-02. При помилці Login статус накопичується (дублюється текст)
+    <h2>Що здати</h2>
+    <ul>
+      <li>Звіт <strong>ЛР6</strong> (Google Docs / DOCX / PDF)</li>
+      <li>Таблиця з 10+ запитами</li>
+      <li>Скріншоти 6+</li>
+      <li>Назва файлу: <code>Група_Прізвище_ЛР06.pdf</code></li>
+    </ul>
 
-Повідомлення типу “Ready | Invalid credentials | Invalid credentials …”
-
-D-03. Calculator виконує віднімання замість додавання
-
-Очікується A + B, фактично A - B.
-
-D-04. Profile відкривається без авторизації
-
-Профіль доступний натисканням “Open Profile” навіть якщо не виконано Login.
-
-D-05. Search чутливий до регістру
-
-Вимога: пошук незалежно від регістру.
-
-Фактично: includes() без нормалізації.
-
-D-06. Calculator: результат подається неінформативно (UX)
-
-“Result: …” без пояснення формули (не критично, але observation).
-
-2. Еталонні баг-репорти (6 шт.)
-BR-01 — Login success при неправильному паролі
-
-Title: Login: система допускає вхід при username=admin та неправильному паролі
-Steps:
-
-Username = admin
-
-Password = wrong
-
-Login
-Expected: Invalid credentials
-Actual: Login success
-Severity: Critical
-Priority: High
-
-BR-02 — Login success при неправильному username, якщо пароль 1234
-
-Steps: username=xxx, pass=1234 → Login
-Expected: Invalid credentials
-Actual: Login success
-Severity: Critical
-Priority: High
-
-BR-03 — Login статус дублюється при повторних помилках
-
-Steps: кілька разів вводити неправильні дані
-Expected: статус замінюється одним повідомленням
-Actual: текст накопичується (“... | Invalid credentials | ...”)
-Severity: Minor
-Priority: Medium
-
-BR-04 — Calculator: замість A+B виконується A-B
-
-Steps: A=5, B=10 → Calculate
-Expected: Result: 15
-Actual: Result: -5
-Severity: Major
-Priority: High
-
-BR-05 — Profile доступний без Login
-
-Steps: не виконувати Login → Open Profile
-Expected: Access denied / повідомлення про необхідність авторизації
-Actual: профіль відкривається
-Severity: Major
-Priority: High
-
-BR-06 — Search залежить від регістру
-
-Steps: пошук “ADMIN”
-Expected: знайти “admin”
-Actual: 0 результатів
-Severity: Minor
-Priority: Medium
-
-3. Мінімум для зарахування
-
-5 баг-репортів з повною структурою
-
-у кожному є Steps + Expected + Actual + Severity/Priority
-
-є скріншоти-докази
+    <h2>Шаблон таблиці для звіту</h2>
+    <pre>
+| # | Method | URL | Request Body | Expected Status | Actual Status | Result |
+|---|--------|-----|--------------|----------------|--------------|--------|
+    </pre>
+  </main>
+</body>
+</html>
