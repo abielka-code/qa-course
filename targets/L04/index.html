@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Target L04</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Test Target — ЛР4</h1>
+    <p class="muted">Task Board Demo — сайт для створення тест-кейсів.</p>
+    <p><a href="../../labs/L04/">← Повернутися до ЛР4</a></p>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>Create Task</h2>
+
+      <label>Title *</label>
+      <input id="title" type="text" placeholder="Наприклад: Перевірити форму"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Description</label>
+      <input id="desc" type="text" placeholder="Короткий опис"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Priority</label>
+      <select id="priority"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;">
+        <option value="Low">Low</option>
+        <option value="Medium" selected>Medium</option>
+        <option value="High">High</option>
+      </select>
+
+      <button id="addBtn" class="btn">Add Task</button>
+
+      <div style="height:12px"></div>
+      <div id="status" class="muted"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Search & Filters</h2>
+
+      <label>Search by title</label>
+      <input id="search" type="text" placeholder="Введіть частину заголовка"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Filter by status</label>
+      <select id="filter"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;">
+        <option value="all" selected>All</option>
+        <option value="todo">To Do</option>
+        <option value="done">Done</option>
+      </select>
+
+      <div id="info" class="muted"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Board</h2>
+      <h3>To Do</h3>
+      <ul id="todo" class="list"></ul>
+
+      <h3>Done</h3>
+      <ul id="done" class="list"></ul>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>About / Requirements (спрощені вимоги)</h2>
+
+      <h3>Функціональні вимоги</h3>
+      <ul class="list">
+        <li>Користувач може створити задачу з Title (обов’язково), Description, Priority.</li>
+        <li>Title не може бути порожнім.</li>
+        <li>Після додавання задача потрапляє у список “To Do”.</li>
+        <li>Користувач може позначити задачу як виконану (перемістити у “Done”).</li>
+        <li>Користувач може повернути задачу з “Done” у “To Do”.</li>
+        <li>Search фільтрує задачі за Title.</li>
+        <li>Filter by status показує: всі / лише To Do / лише Done.</li>
+        <li>Система показує повідомлення status після дій.</li>
+      </ul>
+
+      <h3>Важливі уточнення</h3>
+      <ul class="list">
+        <li>Зберігання даних виконується лише у пам’яті сторінки.</li>
+        <li>Після перезавантаження сторінки всі задачі зникають.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

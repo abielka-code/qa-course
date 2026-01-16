@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Target L07</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Test Target — ЛР7</h1>
+    <p class="muted">API Scenario Runner — запуск послідовностей API запитів.</p>
+    <p><a href="../../labs/L07/">← Повернутися до ЛР7</a></p>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>Scenario Runner</h2>
+      <p class="muted">
+        Оберіть сценарій, натисніть “Run”. Після виконання перегляньте список кроків:
+        метод, endpoint, status-код та тіло відповіді. Ваше завдання — оцінити, чи відповідає
+        фактичний результат очікуваному.
+      </p>
+
+      <label>Scenario</label>
+      <select id="scenario"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;">
+        <option value="S1">S1 — Create → Read → Update → Delete (Product lifecycle)</option>
+        <option value="S2">S2 — Negative: Create invalid product</option>
+        <option value="S3">S3 — Login: valid → invalid</option>
+        <option value="S4">S4 — Update non-existing product</option>
+        <option value="S5">S5 — Delete then check Not Found</option>
+      </select>
+
+      <button id="runBtn" class="btn">Run</button>
+      <button id="resetBtn" class="btn" style="margin-left:8px;">Reset Log</button>
+
+      <div style="height:12px"></div>
+      <div id="summary" class="muted"></div>
+
+      <h3>Execution Log</h3>
+      <pre id="log"
+        style="white-space:pre-wrap;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);min-height:200px;"></pre>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>About / Scenario Rules</h2>
+      <ul class="list">
+        <li>Сценарій — це послідовність API запитів (кроків), об’єднаних спільною метою.</li>
+        <li>У сценарії важливо визначити контрольні точки: статус-коди та дані відповіді.</li>
+        <li>Після кроків Create/Update потрібно перевіряти, що зміни відобразилися через Read (GET).</li>
+        <li>Після Delete потрібно перевірити, що ресурс недоступний (404 Not Found).</li>
+      </ul>
+
+      <h3>Mock API</h3>
+      <p class="muted">
+        Runner використовує вбудоване Mock API (як у ЛР6), але з окремою базою даних.
+      </p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

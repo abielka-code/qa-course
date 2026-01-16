@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Target L09</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Test Target — ЛР9</h1>
+    <p class="muted">Automation Assessment Board — оцінка доцільності автоматизації тестів.</p>
+    <p><a href="../../labs/L09/">← Повернутися до ЛР9</a></p>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>Критерії автоматизації</h2>
+      <p class="muted">
+        Для кожного тесту потрібно оцінити, чи вигідно його автоматизувати.
+        Орієнтуйтеся на наступні критерії.
+      </p>
+
+      <ul class="list">
+        <li><strong>Частота виконання</strong>: щодня/кожен реліз/рідко.</li>
+        <li><strong>Стабільність</strong>: чи змінюється UI/API, чи є “флейки” (нестабільність).</li>
+        <li><strong>Повторюваність</strong>: однакова процедура дає однаковий очікуваний результат.</li>
+        <li><strong>Складність автоматизації</strong>: час/інструменти/доступи.</li>
+        <li><strong>Вартість підтримки</strong>: чи легко підтримувати автотест при змінах.</li>
+        <li><strong>Бізнес-важливість</strong>: критичні функції → пріоритет.</li>
+      </ul>
+
+      <hr class="sep" />
+
+      <h2>Рішення для тестів</h2>
+      <p class="muted">
+        Оберіть тест, виставте рішення (Automate/Manual/Partial), вкажіть причину і пріоритет.
+        Потім можна скопіювати результат у звіт.
+      </p>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <div style="flex:1 1 360px;">
+          <label>Test</label>
+          <select id="testSelect"
+            style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;">
+          </select>
+        </div>
+
+        <div style="flex:0 0 220px;">
+          <label>Decision</label>
+          <select id="decision"
+            style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;">
+            <option value="Automate">Automate</option>
+            <option value="Manual">Manual</option>
+            <option value="Partial">Partial</option>
+          </select>
+        </div>
+
+        <div style="flex:0 0 180px;">
+          <label>Priority</label>
+          <select id="prio"
+            style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;">
+            <option value="High">High</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Reason (коротко)</label>
+      <input id="reason" type="text" placeholder="Напр.: Частий regression, стабільний API, низька вартість підтримки"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <button id="saveBtn" class="btn">Save decision</button>
+      <button id="copyBtn" class="btn" style="margin-left:8px;">Copy table (Markdown)</button>
+      <button id="resetBtn" class="btn" style="margin-left:8px;">Reset</button>
+
+      <div style="height:12px"></div>
+      <div id="hint" class="muted"></div>
+
+      <hr class="sep" />
+
+      <h2>Current decisions</h2>
+      <div id="tableWrap"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Список тестів (вхідні дані)</h2>
+      <p class="muted">
+        Ці тести умовно відповідають модулю e-commerce системи (Login, Registration, Products, Cart, Payments)
+        та частково API перевіркам (CRUD products, login API). Деякі тести спеціально мають ознаки “поганих кандидатів”.
+      </p>
+
+      <ul class="list" id="testsList"></ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

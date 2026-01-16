@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ЛР10 — Підсумкове тестування та звіт</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Лабораторна робота №10</h1>
+    <p class="muted">Підсумкове тестування та звіт.</p>
+    <p><a href="../../">← Назад до меню</a></p>
+  </header>
+
+  <main class="container card">
+    <h2>Мета</h2>
+    <p>
+      Виконати підсумкове тестування реліз-кандидата (Release Candidate) на основі smoke-набору
+      та вибіркового regression-набору, зафіксувати результати, сформувати Test Summary Report
+      та прийняти рішення щодо релізу (Release decision).
+    </p>
+
+    <h2>Навчальний ресурс</h2>
+    <p class="muted">
+      У роботі використовується “Release Candidate Test Center” — сторінка, яка містить
+      опис релізу, набір тестів, перелік дефектів і прості інструменти для фіксації результатів.
+      Студенти не пишуть код, а виконують перевірки та складають підсумковий звіт.
+    </p>
+
+    <p><a class="btn" href="../../targets/L10/">Відкрити Release Candidate Test Center (ЛР10)</a></p>
+
+    <h2>Що потрібно зробити</h2>
+    <ol>
+      <li>Ознайомитися з описом релізу та областю тестування (Scope).</li>
+      <li>Виконати smoke-набір (мінімум 8 тестів) та regression-набір (мінімум 6 тестів).</li>
+      <li>Зафіксувати результати тестів у таблиці (Pass/Fail/Blocked/Skipped).</li>
+      <li>Оформити мінімум 3 баг-репорти для Fail-тестів (якщо Fail є).</li>
+      <li>Скласти Test Summary Report та сформувати Release decision.</li>
+    </ol>
+
+    <h2>Що здати</h2>
+    <ul>
+      <li>Звіт <strong>ЛР10</strong> (Test Summary Report)</li>
+      <li>Таблиця тестів (smoke+regression)</li>
+      <li>Мінімум 3 баг-репорти (за потреби)</li>
+      <li>Скріншоти (мінімум <strong>10</strong>)</li>
+      <li>Назва файлу: <code>Група_Прізвище_ЛР10.pdf</code></li>
+    </ul>
+
+    <h2>Шаблон Test Summary Report</h2>
+    <pre>
+1. Release інформація (версія, дата, середовище)
+2. Scope тестування (що тестували)
+3. Test execution summary (Total/Pass/Fail/Blocked/Skipped)
+4. Key findings (основні проблеми)
+5. Defects summary (Critical/Major/Minor)
+6. Risks та обмеження
+7. Release decision (Go/No-Go) + обґрунтування
+8. Рекомендації
+    </pre>
+  </main>
+</body>
+</html>

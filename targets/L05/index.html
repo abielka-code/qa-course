@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Target L05</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Test Target — ЛР5</h1>
+    <p class="muted">Bug Hunt Demo — сайт з навмисними дефектами для баг-репортів.</p>
+    <p><a href="../../labs/L05/">← Повернутися до ЛР5</a></p>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>Module 1: Login</h2>
+      <p class="muted">Вхід у систему (демо). Має показувати помилки для невалідних даних.</p>
+
+      <label>Username</label>
+      <input id="username" type="text" placeholder="admin"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Password</label>
+      <input id="pass" type="password" placeholder="1234"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <button id="loginBtn" class="btn">Login</button>
+      <div style="height:12px"></div>
+      <div id="loginStatus" class="muted"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Module 2: Calculator</h2>
+      <p class="muted">Обчислення суми двох чисел. Сума має бути коректною.</p>
+
+      <label>Number A</label>
+      <input id="a" type="number" placeholder="5"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Number B</label>
+      <input id="b" type="number" placeholder="10"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <button id="calcBtn" class="btn">Calculate</button>
+      <div style="height:12px"></div>
+      <div id="calcResult" class="muted"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Module 3: Profile</h2>
+      <p class="muted">Профіль повинен бути доступний тільки після Login.</p>
+
+      <button id="openProfileBtn" class="btn">Open Profile</button>
+      <div style="height:12px"></div>
+
+      <div id="profileBox"
+        style="padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);">
+        <div class="muted">Profile is closed.</div>
+      </div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Module 4: Search</h2>
+      <p class="muted">Пошук має знаходити користувачів незалежно від регістру.</p>
+
+      <label>Search user</label>
+      <input id="search" type="text" placeholder="Наприклад: admin"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <div id="searchInfo" class="muted"></div>
+      <ul id="users" class="list"></ul>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>About / Requirements (спрощені вимоги)</h2>
+
+      <h3>Функціональні вимоги</h3>
+      <ul class="list">
+        <li>Login: при невірному username/password має бути повідомлення про помилку.</li>
+        <li>Login: при коректних даних (admin / 1234) має відбутися успішний вхід.</li>
+        <li>Profile: доступний лише після успішного Login.</li>
+        <li>Calculator: має коректно обчислювати суму A + B.</li>
+        <li>Search: має знаходити користувачів незалежно від регістру.</li>
+      </ul>
+
+      <h3>Дані для тестування</h3>
+      <ul class="list">
+        <li>Коректний логін: <code>admin</code></li>
+        <li>Коректний пароль: <code>1234</code></li>
+        <li>Список користувачів: admin, manager, testUser</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

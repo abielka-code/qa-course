@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Target L02</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Test Target — ЛР2</h1>
+    <p class="muted">Навчальний сайт для планування тестування (Test Plan).</p>
+    <p><a href="../../labs/L02/">← Повернутися до ЛР2</a></p>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>Mini Shop Demo</h2>
+      <p class="muted">
+        Це демонстраційний веб-застосунок “міні-магазин” із обмеженим функціоналом.
+        Використовується для планування тестування, а не для повного пошуку дефектів.
+      </p>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Модуль: Вхід у систему (Demo Login)</h2>
+
+      <label>Email</label>
+      <input id="email" type="text" placeholder="user@example.com"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Password</label>
+      <input id="password" type="password" placeholder="********"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <button id="loginBtn" class="btn">Login</button>
+      <button id="logoutBtn" class="btn" style="margin-left:8px;display:none;">Logout</button>
+
+      <div style="height:12px"></div>
+      <div id="loginStatus" class="muted"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Модуль: Каталог товарів</h2>
+
+      <label>Пошук у каталозі</label>
+      <input id="search" type="text" placeholder="Наприклад: mouse"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <div id="catalogInfo" class="muted"></div>
+
+      <ul id="catalog" class="list"></ul>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Модуль: Кошик</h2>
+      <p class="muted">
+        Кошик працює локально (без сервера). Оформлення замовлення — демонстраційне.
+      </p>
+
+      <ul id="cart" class="list"></ul>
+      <div id="total" class="muted"></div>
+
+      <div style="height:12px"></div>
+
+      <button id="checkoutBtn" class="btn">Checkout</button>
+      <button id="clearCartBtn" class="btn" style="margin-left:8px;">Clear Cart</button>
+
+      <div style="height:12px"></div>
+      <div id="cartStatus" class="muted"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>About / Requirements (спрощені вимоги)</h2>
+
+      <h3>Функціональні вимоги</h3>
+      <ul class="list">
+        <li>Користувач може виконати вхід через Email та Password (демо-режим).</li>
+        <li>Користувач може переглядати каталог товарів.</li>
+        <li>Користувач може виконувати пошук товарів за назвою.</li>
+        <li>Користувач може додавати товари у кошик.</li>
+        <li>Користувач може очищати кошик.</li>
+        <li>Користувач може виконати “Checkout” (імітація оформлення).</li>
+      </ul>
+
+      <h3>Обмеження (важливо для планування)</h3>
+      <ul class="list">
+        <li>Дані зберігаються лише в пам’яті сторінки (після перезавантаження все скидається).</li>
+        <li>Серверної частини немає (авторизація демонстраційна).</li>
+        <li>Історія замовлень не ведеться.</li>
+        <li>Ціни — фіксовані, валюта — умовна.</li>
+      </ul>
+
+      <h3>Нефункціональні вимоги (очікувані)</h3>
+      <ul class="list">
+        <li>Сайт має відкриватися у сучасних браузерах (Chrome/Firefox/Edge).</li>
+        <li>Інтерфейс не повинен “ламатися” при звуженні вікна браузера.</li>
+        <li>Ключові дії мають супроводжуватися зрозумілими повідомленнями (status).</li>
+      </ul>
+
+      <h3>Підказка студенту</h3>
+      <p class="muted">
+        У цій лабораторній вам потрібно скласти Test Plan: визначити модулі, ризики,
+        scope, типи тестування, середовище та артефакти. Повний пошук дефектів буде у наступних роботах.
+      </p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

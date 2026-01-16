@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Target L03</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Test Target — ЛР3</h1>
+    <p class="muted">Registration & Profile Demo — застосунок для складання чек-листа.</p>
+    <p><a href="../../labs/L03/">← Повернутися до ЛР3</a></p>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>Модуль: Registration</h2>
+      <p class="muted">
+        Заповніть форму та натисніть “Register”. Дані з’являться в профілі та в списку користувачів.
+      </p>
+
+      <label>Full name</label>
+      <input id="fullName" type="text" placeholder="Наприклад: Іван Петренко"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Email</label>
+      <input id="email" type="text" placeholder="ivan@example.com"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Phone</label>
+      <input id="phone" type="text" placeholder="+380XXXXXXXXX"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Age</label>
+      <input id="age" type="number" placeholder="18"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Password</label>
+      <input id="password" type="password" placeholder="********"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <label>Confirm password</label>
+      <input id="confirmPassword" type="password" placeholder="********"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <button id="registerBtn" class="btn">Register</button>
+      <button id="resetBtn" class="btn" style="margin-left:8px;">Reset</button>
+
+      <div style="height:12px"></div>
+      <div id="regStatus" class="muted"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Модуль: Profile</h2>
+      <p class="muted">Профіль відображає поточного “зареєстрованого” користувача.</p>
+
+      <div id="profileBox"
+        style="padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);">
+        <div class="muted">Профіль ще не створено.</div>
+      </div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Модуль: Users list</h2>
+      <p class="muted">Список користувачів формується після реєстрацій.</p>
+
+      <label>Search users by name</label>
+      <input id="search" type="text" placeholder="Введіть частину імені"
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <div id="usersInfo" class="muted"></div>
+      <ul id="usersList" class="list"></ul>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>About / Requirements (спрощені вимоги)</h2>
+
+      <h3>Функціональні вимоги</h3>
+      <ul class="list">
+        <li>Користувач може зареєструвати профіль через форму Registration.</li>
+        <li>Обов’язкові поля: Full name, Email, Password, Confirm password.</li>
+        <li>Email повинен містити символ <code>@</code> та домен (умовна перевірка).</li>
+        <li>Phone має відповідати формату <code>+380XXXXXXXXX</code> (12–13 символів разом із <code>+</code>).</li>
+        <li>Age має бути у межах 16–120.</li>
+        <li>Password має бути не коротший за 6 символів.</li>
+        <li>Confirm password має співпадати з Password.</li>
+        <li>Після успішної реєстрації дані відображаються у Profile та додаються у Users list.</li>
+        <li>Search має фільтрувати користувачів за частиною Full name.</li>
+        <li>Система показує статус-повідомлення про результат дій (успіх/помилка).</li>
+      </ul>
+
+      <h3>Нефункціональні вимоги (очікувані)</h3>
+      <ul class="list">
+        <li>Після натискання Register користувач має отримувати однозначне повідомлення про результат.</li>
+        <li>Поле Reset має очищати форму та повідомлення.</li>
+        <li>Інтерфейс не повинен ламатися при зміні ширини вікна браузера.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

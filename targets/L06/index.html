@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Target L06</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Test Target — ЛР6</h1>
+    <p class="muted">API Console Demo — симулятор API для виконання HTTP-запитів.</p>
+    <p><a href="../../labs/L06/">← Повернутися до ЛР6</a></p>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>API Console</h2>
+      <p class="muted">
+        Виберіть метод, введіть шлях (URL) і тіло запиту (JSON), потім натисніть “Send”.
+        Система поверне статус-код і тіло відповіді.
+      </p>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <div style="flex:0 0 140px;">
+          <label>Method</label>
+          <select id="method"
+            style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;">
+            <option>GET</option>
+            <option>POST</option>
+            <option>PUT</option>
+            <option>DELETE</option>
+          </select>
+        </div>
+
+        <div style="flex:1 1 420px;">
+          <label>URL (path)</label>
+          <input id="url" type="text" placeholder="/api/products"
+            style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+        </div>
+      </div>
+
+      <label>Request Body (JSON) — для POST/PUT</label>
+      <textarea id="body" rows="6" placeholder='{"name":"Keyboard","price":20}'
+        style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;font-family:ui-monospace,Consolas,monospace;"></textarea>
+
+      <button id="sendBtn" class="btn">Send</button>
+      <button id="clearBtn" class="btn" style="margin-left:8px;">Clear</button>
+
+      <div style="height:14px"></div>
+
+      <h3>Response</h3>
+      <div id="meta" class="muted"></div>
+
+      <pre id="response"
+        style="white-space:pre-wrap;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);min-height:120px;"></pre>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Quick Examples</h2>
+      <ul class="list">
+        <li><code>GET /api/products</code> — список товарів</li>
+        <li><code>GET /api/products/1</code> — товар за ID</li>
+        <li><code>POST /api/products</code> — створити товар</li>
+        <li><code>PUT /api/products/2</code> — оновити товар</li>
+        <li><code>DELETE /api/products/3</code> — видалити товар</li>
+        <li><code>POST /api/login</code> — логін (демо)</li>
+      </ul>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>About / API Specification (спрощені вимоги)</h2>
+
+      <h3>Base</h3>
+      <p class="muted">
+        Усі запити виконуються до умовного API, яке починається з <code>/api</code>.
+        Це симулятор API всередині сторінки (без реального сервера).
+      </p>
+
+      <h3>Endpoints</h3>
+      <ul class="list">
+        <li><strong>GET</strong> <code>/api/products</code> → 200 OK, JSON-масив товарів</li>
+        <li><strong>GET</strong> <code>/api/products/:id</code> → 200 OK або 404 Not Found</li>
+        <li><strong>POST</strong> <code>/api/products</code> → 201 Created (створення товару)</li>
+        <li><strong>PUT</strong> <code>/api/products/:id</code> → 200 OK або 404 Not Found</li>
+        <li><strong>DELETE</strong> <code>/api/products/:id</code> → 204 No Content або 404 Not Found</li>
+        <li><strong>POST</strong> <code>/api/login</code> → 200 OK або 401 Unauthorized</li>
+      </ul>
+
+      <h3>Product schema</h3>
+      <ul class="list">
+        <li><code>id</code> — number</li>
+        <li><code>name</code> — string (обов’язкове)</li>
+        <li><code>price</code> — number (обов’язкове, ≥ 0)</li>
+      </ul>
+
+      <h3>Login schema</h3>
+      <ul class="list">
+        <li>Body: <code>{"username":"admin","password":"1234"}</code></li>
+        <li>Коректні дані: admin / 1234</li>
+      </ul>
+
+      <h3>Важливо</h3>
+      <p class="muted">
+        Потрібно не “шукати баги випадково”, а виконати чіткі HTTP-запити,
+        проаналізувати статус-коди та відповіді й зафіксувати їх у звіті.
+      </p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

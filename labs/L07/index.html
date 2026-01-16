@@ -1,0 +1,81 @@
+ЛР6 — Еталон: запити, очікувані відповіді та “особливості” API
+1. Очікуваний результат студентської роботи
+
+Студент повинен здати:
+
+таблицю 10+ HTTP-запитів;
+
+по кожному запиту: Method, URL, Body (якщо потрібно), Expected/Actual status;
+
+6+ скріншотів;
+
+висновок.
+
+2. Еталонний набір запитів (12 шт.)
+GET
+
+GET /api/products → 200, масив товарів
+
+GET /api/products/1 → 200, товар id=1
+
+GET /api/products/999 → 404, Product not found
+
+POST products
+
+POST /api/products (name+price) → 201, створений товар
+
+POST /api/products без name → 400
+
+POST /api/products price=-5 → 400
+
+PUT
+
+PUT /api/products/2 {"price":99} → 200, оновлений товар
+
+PUT /api/products/999 {"price":10} → 404
+
+DELETE
+
+DELETE /api/products/3 → 204
+
+GET /api/products/3 → 404 (після видалення)
+
+LOGIN
+
+POST /api/login admin/1234 → 200, token
+
+POST /api/login admin/0000 → 401
+
+3. Закладені “особливості” (Observation)
+
+Це не обов’язково як баги, але студент може коректно зафіксувати як Observation.
+
+OBS-01: POST /api/products не повертає Location header
+
+У реальних REST API після 201 може бути Location: /api/products/{id}.
+
+Тут header не передається (Observation).
+
+OBS-02: PUT дозволяє часткове оновлення
+
+PUT оновлює лише те поле, яке передано.
+
+Це ближче до PATCH, але в навчальному API дозволено.
+
+Можна описати як Observation (не критично).
+
+OBS-03: DELETE повертає тіло відповіді при статусі 204
+
+204 No Content не повинен містити body.
+
+Тут повертається { "message": "Deleted" } → Observation або Fail (якщо трактувати строго).
+
+4. Мінімум для зарахування
+
+10 коректно виконаних запитів
+
+таблиця заповнена повністю
+
+6 скріншотів
+
+висновок

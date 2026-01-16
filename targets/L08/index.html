@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Target L08</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Test Target — ЛР8</h1>
+    <p class="muted">Test Run Analyzer — аналіз готового тестового прогону.</p>
+    <p><a href="../../labs/L08/">← Повернутися до ЛР8</a></p>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>Test Run: Release 1.0.3</h2>
+      <p class="muted">
+        Нижче наведені результати тестового прогону. Дані умовні, але наближені до реальних сценаріїв.
+        Використайте їх для розрахунків і підготовки тестового звіту.
+      </p>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <div style="flex:1 1 220px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);">
+          <div class="muted">Total tests</div>
+          <div style="font-size:24px;font-weight:700" id="total">—</div>
+        </div>
+        <div style="flex:1 1 220px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);">
+          <div class="muted">Passed</div>
+          <div style="font-size:24px;font-weight:700" id="passed">—</div>
+        </div>
+        <div style="flex:1 1 220px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);">
+          <div class="muted">Failed</div>
+          <div style="font-size:24px;font-weight:700" id="failed">—</div>
+        </div>
+        <div style="flex:1 1 220px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);">
+          <div class="muted">Blocked</div>
+          <div style="font-size:24px;font-weight:700" id="blocked">—</div>
+        </div>
+        <div style="flex:1 1 220px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);">
+          <div class="muted">Skipped</div>
+          <div style="font-size:24px;font-weight:700" id="skipped">—</div>
+        </div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <button id="showBtn" class="btn">Show detailed results</button>
+      <button id="copyBtn" class="btn" style="margin-left:8px;">Copy raw data</button>
+
+      <div style="height:14px"></div>
+      <div id="rates" class="muted"></div>
+
+      <hr class="sep" />
+
+      <h2>Detailed test cases</h2>
+      <p class="muted">Тут наведено перелік тестів, їх модулі та статуси.</p>
+
+      <div id="tableWrap"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Defects summary</h2>
+      <p class="muted">
+        Нижче наведено перелік дефектів, які були зареєстровані під час прогону.
+        Потрібно проаналізувати severity та вплив на рішення про реліз.
+      </p>
+      <div id="defectsWrap"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>About / Tasks</h2>
+      <ol class="list">
+        <li>Порахувати Total / Passed / Failed / Blocked / Skipped.</li>
+        <li>Обчислити Pass rate та Fail rate у відсотках.</li>
+        <li>Знайти модуль з найбільшою кількістю Fail.</li>
+        <li>Визначити, чи можливий реліз (Release decision) і чому.</li>
+        <li>Запропонувати 3 рекомендації для команди розробки.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

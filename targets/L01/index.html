@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Target L01</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Test Target — ЛР1</h1>
+    <p class="muted">Навчальний сайт для базового ознайомлення та простих перевірок.</p>
+    <p><a href="../../labs/L01/">← Повернутися до ЛР1</a></p>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>Модуль: Quick Notes</h2>
+      <p class="muted">
+        Мета — додати нотатку, знайти її через пошук, змінити стан “важливо”.
+      </p>
+
+      <label>Текст нотатки</label>
+      <input id="noteText" type="text" placeholder="Наприклад: Перевірити ЛР1" style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <button id="addBtn" class="btn">Додати</button>
+
+      <div style="height:12px"></div>
+
+      <label>Пошук</label>
+      <input id="searchText" type="text" placeholder="Введіть фрагмент тексту" style="width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);margin:8px 0 12px;" />
+
+      <div id="status" class="muted"></div>
+
+      <h3>Список нотаток</h3>
+      <ul id="list" class="list"></ul>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>About (спрощені вимоги)</h2>
+      <ul class="list">
+        <li>Користувач може додати нотатку через поле “Текст нотатки” та кнопку “Додати”.</li>
+        <li>Порожня нотатка не повинна додаватися.</li>
+        <li>Пошук має фільтрувати список за входженням тексту.</li>
+        <li>Нотатка може бути позначена як “важлива”.</li>
+        <li>Система показує повідомлення про результат дій (status).</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

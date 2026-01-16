@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Target L10</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Test Target — ЛР10</h1>
+    <p class="muted">Release Candidate Test Center — фінальний тест-прохід та звітність.</p>
+    <p><a href="../../labs/L10/">← Повернутися до ЛР10</a></p>
+  </header>
+
+  <main class="container card">
+    <section>
+      <h2>Release Candidate</h2>
+      <p class="muted">
+        Версія: <strong>1.0.0-rc2</strong> | Дата: <strong>2026-01-16</strong> | Середовище: <strong>Web / Chrome</strong>
+      </p>
+
+      <h3>Scope (область тестування)</h3>
+      <ul class="list">
+        <li>Login / Registration</li>
+        <li>Products каталоги</li>
+        <li>Cart (кошик)</li>
+        <li>Payments (валідація оплати)</li>
+        <li>API Products CRUD (обмежено)</li>
+      </ul>
+
+      <h3>Out of Scope</h3>
+      <ul class="list">
+        <li>Навантажувальне тестування</li>
+        <li>Безпекове тестування (penetration)</li>
+        <li>Інтеграції з реальними платіжними системами</li>
+      </ul>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Test Set</h2>
+      <p class="muted">
+        Нижче наведено smoke та regression тести. Натисніть “Mark” для фіксації статусу.
+        Після цього натисніть “Generate summary” для підрахунку.
+      </p>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button id="fillSmokeBtn" class="btn">Auto-fill Smoke (demo)</button>
+        <button id="fillRegBtn" class="btn">Auto-fill Regression (demo)</button>
+        <button id="resetBtn" class="btn">Reset</button>
+        <button id="summaryBtn" class="btn">Generate summary</button>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div id="summaryBox"
+        style="padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);">
+        <div class="muted">Summary will appear here.</div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <h3>Smoke tests</h3>
+      <div id="smokeWrap"></div>
+
+      <div style="height:10px"></div>
+
+      <h3>Regression tests</h3>
+      <div id="regWrap"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Known issues (pre-registered)</h2>
+      <p class="muted">
+        Це перелік відомих дефектів, які не були виправлені у rc2.
+        Студент має врахувати їх при Release decision.
+      </p>
+      <div id="knownWrap"></div>
+    </section>
+
+    <hr class="sep" />
+
+    <section>
+      <h2>Tasks</h2>
+      <ol class="list">
+        <li>Виконати smoke + regression тестування (мінімум 14 тестів загалом).</li>
+        <li>Зафіксувати результати: Pass/Fail/Blocked/Skipped.</li>
+        <li>Оформити мінімум 3 баг-репорти для Fail-тестів (або описати, чому баги не створювались).</li>
+        <li>Сформувати Test Summary Report і Release decision.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

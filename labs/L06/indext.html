@@ -1,0 +1,96 @@
+ЛР5 — Еталон: очікувані дефекти та приклади баг-репортів
+1. Закладені дефекти (очікувані)
+
+У target-сайті ЛР5 гарантовано можна знайти щонайменше 6 дефектів.
+
+D-01. Login пропускає неправильний пароль (логічна помилка OR)
+
+Вхід успішний, якщо username=admin або password=1234
+
+Має бути AND.
+
+D-02. При помилці Login статус накопичується (дублюється текст)
+
+Повідомлення типу “Ready | Invalid credentials | Invalid credentials …”
+
+D-03. Calculator виконує віднімання замість додавання
+
+Очікується A + B, фактично A - B.
+
+D-04. Profile відкривається без авторизації
+
+Профіль доступний натисканням “Open Profile” навіть якщо не виконано Login.
+
+D-05. Search чутливий до регістру
+
+Вимога: пошук незалежно від регістру.
+
+Фактично: includes() без нормалізації.
+
+D-06. Calculator: результат подається неінформативно (UX)
+
+“Result: …” без пояснення формули (не критично, але observation).
+
+2. Еталонні баг-репорти (6 шт.)
+BR-01 — Login success при неправильному паролі
+
+Title: Login: система допускає вхід при username=admin та неправильному паролі
+Steps:
+
+Username = admin
+
+Password = wrong
+
+Login
+Expected: Invalid credentials
+Actual: Login success
+Severity: Critical
+Priority: High
+
+BR-02 — Login success при неправильному username, якщо пароль 1234
+
+Steps: username=xxx, pass=1234 → Login
+Expected: Invalid credentials
+Actual: Login success
+Severity: Critical
+Priority: High
+
+BR-03 — Login статус дублюється при повторних помилках
+
+Steps: кілька разів вводити неправильні дані
+Expected: статус замінюється одним повідомленням
+Actual: текст накопичується (“... | Invalid credentials | ...”)
+Severity: Minor
+Priority: Medium
+
+BR-04 — Calculator: замість A+B виконується A-B
+
+Steps: A=5, B=10 → Calculate
+Expected: Result: 15
+Actual: Result: -5
+Severity: Major
+Priority: High
+
+BR-05 — Profile доступний без Login
+
+Steps: не виконувати Login → Open Profile
+Expected: Access denied / повідомлення про необхідність авторизації
+Actual: профіль відкривається
+Severity: Major
+Priority: High
+
+BR-06 — Search залежить від регістру
+
+Steps: пошук “ADMIN”
+Expected: знайти “admin”
+Actual: 0 результатів
+Severity: Minor
+Priority: Medium
+
+3. Мінімум для зарахування
+
+5 баг-репортів з повною структурою
+
+у кожному є Steps + Expected + Actual + Severity/Priority
+
+є скріншоти-докази
