@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Самостійна робота SV12 — CI/CD для тестувальника</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 1140px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background:#fff; }
+    .muted { color:#6b7280; }
+    .btn {
+      display:inline-block; padding:10px 14px; border-radius:10px; text-decoration:none;
+      border:1px solid #111827; background:#111827; color:#fff; font-weight:900;
+    }
+    .btn.secondary { background:#fff; color:#111827; }
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 980px){ .grid { grid-template-columns: 1.25fr 0.75fr; } }
+    code { background:#f3f4f6; padding:2px 6px; border-radius:6px; }
+    ul { margin:8px 0 0 18px; }
+    .note { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; }
+    .box { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+    .kpi { display:grid; gap:10px; grid-template-columns: 1fr; }
+    @media (min-width: 980px){ .kpi { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Самостійна робота SV12</h1>
+    <h2>Тема: CI/CD для тестувальника — pipeline, smoke/regression, контроль якості релізу</h2>
+
+    <p class="muted">
+      Роль студента: <b>QA/Release Gatekeeper</b>. Код не пишемо — виконуємо smoke/regression,
+      аналізуємо стабільність релізу, збираємо докази DevTools, формуємо рішення <b>Go/No-Go</b>.
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Освоїти підхід QA у CI/CD: що таке pipeline, які тести запускаються на етапах,
+          як виконати <b>smoke</b> та <b>regression</b> перевірки перед релізом, як оцінити ризики
+          та оформити <b>release quality report</b>.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/SV12</code> — “ReleaseGate: релізний контроль (Auth + Orders + Status)”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/SV12/index.html">Відкрити target-сайт SV12</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <h3>Що потрібно здати</h3>
+        <div class="kpi">
+          <div class="box">
+            <b>QA-артефакти релізу</b>
+            <ul>
+              <li>Smoke checklist (мінімум 15 пунктів)</li>
+              <li>Regression checklist (мінімум 10 пунктів)</li>
+              <li>Тест-кейси (8–12) зі статусами Pass/Fail/Blocked</li>
+              <li>Баг-репорти (4–6) з severity/priority</li>
+              <li>Test Summary Report + Go/No-Go</li>
+              <li>Release Notes (коротко: що перевірено, що критично)</li>
+            </ul>
+          </div>
+          <div class="box">
+            <b>Evidence</b>
+            <ul>
+              <li>10+ скріншотів UI</li>
+              <li>Network 404/500</li>
+              <li>Console errors після ключових дій</li>
+              <li>Скрін “реліз заблоковано / No-Go”</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <aside class="note">
+        <h3>Ключові поняття</h3>
+        <ul>
+          <li><b>Pipeline:</b> етапи build → test → deploy</li>
+          <li><b>Smoke:</b> “чи живий продукт” (основні сценарії)</li>
+          <li><b>Regression:</b> “чи не зламали старе”</li>
+          <li><b>Release gate:</b> рішення Go/No-Go</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

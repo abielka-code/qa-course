@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SV03 Target — TaskFlow</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .wrap { max-width: 1100px; margin: 24px auto; padding: 16px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid #e5e7eb; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+
+    .grid { display:grid; grid-template-columns: 1fr; gap:12px; }
+    @media (min-width: 980px){ .grid { grid-template-columns: 0.9fr 1.1fr; } }
+
+    label { display:block; font-weight: 600; margin-bottom: 6px; }
+    input, select, button {
+      width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d1d5db;
+      font: inherit;
+    }
+    button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:700; }
+    button.secondary { background:#fff; color:#111827; }
+
+    .row { display:grid; gap:10px; grid-template-columns: 1fr; }
+    @media (min-width: 880px){ .row { grid-template-columns: 1.2fr 0.7fr 0.7fr 0.4fr; } }
+
+    .muted { color:#6b7280; }
+    .danger { color:#b91c1c; font-weight:700; }
+    .ok { color:#047857; font-weight:700; }
+
+    .stats { display:flex; gap:10px; flex-wrap:wrap; }
+    .pill { padding:6px 10px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+
+    .list { margin-top: 10px; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; }
+    .item { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px; border-top:1px solid #f1f5f9; }
+    .item:first-child{ border-top:0; }
+    .left { display:flex; gap:10px; align-items:center; min-width: 0; }
+    .title { font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width: 520px; }
+    .tag { font-size:12px; padding: 3px 8px; border-radius: 999px; border:1px solid #e5e7eb; }
+    .actions { display:flex; gap:8px; }
+    .mini { padding:8px 10px; border-radius:10px; }
+    .mini.secondary { border:1px solid #111827; background:#fff; color:#111827; }
+
+    /* ❗ навчальна "адаптивна" проблема: штучно збільшуємо мінімальну ширину списку */
+    .list { min-width: 780px; } /* на мобільних буде горизонтальний скрол */
+
+    .hint { margin-top: 10px; font-size: 13px; color: #6b7280; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">TaskFlow</h1>
+        <div class="muted">Менеджер задач для SV03 (навчальний target)</div>
+      </div>
+      <div class="stats" aria-label="Статистика задач">
+        <span class="pill">Усього: <b id="totalCount">0</b></span>
+        <span class="pill">Активні: <b id="activeCount">0</b></span>
+        <span class="pill">Готові: <b id="doneCount">0</b></span>
+        <span class="badge">SV03 target</span>
+      </div>
+    </div>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">Створення та перегляд задач</h2>
+      <p class="muted" style="margin-top:0;">
+        Додайте задачу, змініть статус, спробуйте фільтри та пошук. Перевірте DevTools (Console/Network).
+      </p>
+
+      <div class="row" role="group" aria-label="Панель керування">
+        <div>
+          <label for="taskTitle">Назва задачі</label>
+          <input id="taskTitle" type="text" placeholder="Напр.: Перевірити форму реєстрації" />
+        </div>
+
+        <div>
+          <label for="priority">Пріоритет</label>
+          <select id="priority">
+            <option value="low">Низький</option>
+            <option value="normal" selected>Звичайний</option>
+            <option value="high">Високий</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="filter">Фільтр</label>
+          <select id="filter">
+            <option value="all" selected>Усі</option>
+            <option value="active">Активні</option>
+            <option value="done">Готові</option>
+          </select>
+        </div>
+
+        <div>
+          <label>&nbsp;</label>
+          <button id="addBtn" title="Додати задачу">Додати</button>
+        </div>
+      </div>
+
+      <div style="display:grid; gap:10px; grid-template-columns: 1fr; margin-top:10px;">
+        <div>
+          <label for="search">Пошук</label>
+          <input id="search" type="text" placeholder="Шукати по назві задачі..." />
+        </div>
+      </div>
+
+      <div class="hint">
+        Порада: натисніть “Синхронізувати” і подивіться <b>Network</b>. Також перевірте <b>Console</b> після зміни статусів.
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+        <button id="syncBtn" class="mini">Синхронізувати</button>
+        <button id="clearBtn" class="mini secondary">Очистити всі</button>
+      </div>
+
+      <div class="panel" style="margin-top:12px;">
+        <h3 style="margin-top:0;">Список задач</h3>
+        <div class="list" id="list" aria-label="Список задач (Task list)">
+          <!-- items -->
+        </div>
+        <p id="status" class="muted" style="margin:10px 0 0;">Статус: очікування</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

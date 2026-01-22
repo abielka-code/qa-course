@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Лабораторна робота L06 — Аналіз API-сценаріїв</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 980px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color: #6b7280; }
+    .btn {
+      display: inline-block; padding: 10px 14px; border-radius: 10px; text-decoration: none;
+      border: 1px solid #111827; background: #111827; color: #fff; font-weight: 700;
+    }
+    .btn.secondary { background: #fff; color: #111827; }
+    .grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    @media (min-width: 860px){ .grid { grid-template-columns: 1.2fr 0.8fr; } }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
+    ul { margin: 8px 0 0 18px; }
+    .note { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Лабораторна робота L06</h1>
+    <h2>Тема: Аналіз API-сценаріїв (Auth → Token → Profile)</h2>
+
+    <p class="muted">
+      Роль студента: <b>тестувальник</b>. Код не пишемо — лише перевірка, аналіз у DevTools та документування.
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Навчитися перевіряти типову API-логіку веб-застосунку:
+          <b>логін → отримання токена → запит профілю → вихід</b>.
+          Підтверджувати помилки доказами через <b>Network/Console</b>.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/L06</code> — “AuthBox: Login & Profile”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/L06/index.html">Відкрити target-сайт L06</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <h3>Що потрібно здати</h3>
+        <ul>
+          <li><b>Чек-лист</b> (20–25+ пунктів)</li>
+          <li><b>Тест-кейси</b> (8–12) з API-кроками</li>
+          <li><b>Баг-репорти</b> (4–6 або всі знайдені)</li>
+          <li><b>Test Summary Report</b> (Go/No-Go)</li>
+          <li><b>Evidence</b>: 10+ скріншотів (UI + Console + Network)</li>
+        </ul>
+      </section>
+
+      <aside class="note">
+        <h3>Фокус лабораторної</h3>
+        <ul>
+          <li>HTTP статуси: 200 / 401 / 404 / 500</li>
+          <li>Headers: Authorization (Bearer token)</li>
+          <li>Правильна обробка помилок на UI</li>
+          <li>Console error після дій</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

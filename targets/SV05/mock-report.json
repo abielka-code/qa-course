@@ -1,0 +1,9 @@
+{
+  "reportName": "Weekly API Report",
+  "generatedAt": "2026-01-22",
+  "status": "ok",
+  "checks": [
+    { "name": "Products endpoint", "status": "expected 200" },
+    { "name": "Ping endpoint", "status": "expected 200" }
+  ]
+}

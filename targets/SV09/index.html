@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SV09 Target — ResponsiveHub</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .wrap { max-width: 1180px; margin: 24px auto; padding: 16px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+
+    .nav {
+      display:flex; gap:14px; align-items:center; justify-content:space-between;
+      padding: 12px; border:1px solid #e5e7eb; border-radius:12px; background:#fff;
+    }
+    .brand { font-weight:900; }
+    .links { display:flex; gap:12px; align-items:center; }
+
+    /* ❗ дефект: links не переносяться і можуть вилазити за межі */
+    .links a { text-decoration:none; font-weight:700; white-space: nowrap; }
+
+    .hero { margin-top:14px; padding:14px; border:1px solid #e5e7eb; border-radius:12px; background:#fff; }
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+
+    /* ❗ дефект: фіксована ширина колонки (ламає tablet/mobile) */
+    .grid { grid-template-columns: 520px 1fr; }
+
+    .card { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+    .muted { color:#6b7280; }
+    .ok { color:#047857; font-weight:900; }
+    .danger { color:#b91c1c; font-weight:900; }
+
+    .pricing { margin-top:12px; }
+    .priceGrid { display:grid; gap:12px; grid-template-columns: 1fr 1fr 1fr; }
+    /* ❗ дефект: на мобільному не переходить в 1 колонку */
+    .priceGrid { min-width: 980px; }
+
+    .pill { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+
+    label { display:block; font-weight:800; margin-bottom:6px; }
+    input, button {
+      width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d1d5db; font: inherit;
+    }
+    button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:900; }
+    button.secondary { background:#fff; color:#111827; }
+
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .mini { width:auto; padding: 8px 10px; border-radius: 10px; }
+
+    .out { margin-top:10px; padding:10px; border-radius:12px; border:1px solid #e5e7eb; background:#f9fafb; min-height:70px; white-space: pre-wrap; }
+
+    /* ❗ дефект: глобальна мінімальна ширина викликає горизонтальний скрол */
+    body { min-width: 980px; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">ResponsiveHub</h1>
+        <div class="muted">Landing + Pricing + форма (SV09 target)</div>
+      </div>
+      <span class="badge">SV09 target</span>
+    </div>
+
+    <nav class="nav" aria-label="Основна навігація">
+      <div class="brand">RH</div>
+      <div class="links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+        <a href="#support">Support Center</a>
+      </div>
+    </nav>
+
+    <section class="hero" id="features">
+      <h2 style="margin-top:0;">Швидкий старт</h2>
+      <div class="grid">
+        <div class="card">
+          <h3 style="margin-top:0;">Feature list</h3>
+          <ul>
+            <li>Адаптивні блоки</li>
+            <li>Форма заявки</li>
+            <li>Плани підписки</li>
+          </ul>
+          <p class="muted">Перевірте поведінку на 360×800 / 768×1024 / 1366×768.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0;">Заявка</h3>
+          <label for="email">Email</label>
+          <input id="email" type="text" placeholder="name@example.com" />
+
+          <div style="height:10px;"></div>
+
+          <!-- ❗ дефект доступності: label відсутній (використано лише placeholder) -->
+          <input id="phone" type="text" placeholder="Phone (e.g. +380...)" />
+
+          <div class="row" style="margin-top:12px;">
+            <button id="sendBtn" class="mini">Надіслати</button>
+            <button id="resetBtn" class="mini secondary">Очистити</button>
+            <span class="pill">Status: <b id="statusView">idle</b></span>
+          </div>
+
+          <div id="out" class="out muted">Результат…</div>
+
+          <p class="muted" style="font-size:13px;">
+            Порада: відкрийте DevTools → Console/Network і перевірте “Надіслати”.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero pricing" id="pricing">
+      <h2 style="margin-top:0;">Pricing</h2>
+      <div class="priceGrid" aria-label="Тарифи">
+        <div class="card">
+          <h3 style="margin-top:0;">Basic</h3>
+          <p class="muted">Для старту</p>
+          <p><b>$9</b> / month</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Pro</h3>
+          <p class="muted">Найпопулярніший</p>
+          <p><b>$19</b> / month</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Team</h3>
+          <p class="muted">Для команди</p>
+          <p><b>$49</b> / month</p>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px;">Очікувано: на мобільному тарифи мають стати в одну колонку.</p>
+    </section>
+
+    <section class="hero" id="contact">
+      <h2 style="margin-top:0;">Contact</h2>
+      <p class="muted">Перевірте контраст, фокус, таб-навігацію, та поведінку блоків у різних браузерах.</p>
+      <div class="row">
+        <span class="pill">Viewport: використовуйте DevTools device toolbar</span>
+        <span class="pill">Browsers: Chrome/Edge/Firefox</span>
+      </div>
+    </section>
+
+    <section class="hero" id="support">
+      <h2 style="margin-top:0;">Support Center</h2>
+      <p class="muted">Цей розділ використовується для перевірки навігації та верстки.</p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

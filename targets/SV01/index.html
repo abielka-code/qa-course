@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Target SV01 — Glossary Trainer</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+
+  <style>
+    .layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 12px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      padding: 12px 14px;
+    }
+
+    .toolbar {
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .btnMini {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* BUG (Accessibility): фокус практично не видно */
+    .btnMini:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .tag {
+      display:inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      font-size: 12px;
+      opacity: 0.95;
+      white-space: nowrap;
+    }
+
+    label { display:block; font-weight:700; margin: 10px 0 6px; }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      outline: none;
+    }
+    textarea { min-height: 88px; resize: vertical; }
+
+    .hintBox {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 13px;
+      opacity: 0.92;
+      line-height: 1.45;
+    }
+
+    .list {
+      margin-top: 10px;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .item {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      padding: 10px 12px;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items:flex-start;
+    }
+
+    .title {
+      font-weight: 900;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .meta {
+      font-size: 13px;
+      opacity: 0.86;
+      margin-top: 6px;
+      line-height: 1.35;
+    }
+
+    .rightColFixed {
+      width: 720px; /* BUG (Responsive): фіксована ширина -> можливий горизонтальний скрол на мобільних */
+      max-width: 720px;
+    }
+
+    .quizBox {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      padding: 12px 14px;
+      margin-top: 10px;
+    }
+
+    .answers {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media (max-width: 520px) {
+      .answers { grid-template-columns: 1fr; }
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      opacity: 0.92;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 10px 12px;
+      border-radius: 14px;
+      margin-top: 10px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      min-width: 300px;
+      max-width: 520px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.82);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+      display: none;
+      z-index: 9999;
+    }
+    .toast.show { display:block; }
+    .toast .t { font-weight: 900; margin-bottom: 6px; }
+    .toast .m { font-size: 14px; opacity: 0.95; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Glossary Trainer (Target SV01)</h1>
+      <p class="subtitle">Навчальний сайт для термінів QA та тренування перевірок</p>
+    </header>
+
+    <main class="card">
+      <section class="hintBox">
+        <div style="font-weight:900; margin-bottom:6px;">Expected Requirements</div>
+        <ul style="margin:0; padding-left:18px;">
+          <li>Пошук термінів працює незалежно від регістру введення.</li>
+          <li>Додавання терміну: назва та опис обов’язкові.</li>
+          <li>Після додавання терміну список оновлюється коректно.</li>
+          <li>Quiz: правильна відповідь додає +1 до Score.</li>
+          <li>На 360 px сторінка не має горизонтального скролу.</li>
+          <li>Tab-навігація: фокус видно на кнопках.</li>
+          <li>Export: система створює файл або показує зрозумілу помилку без падіння UI.</li>
+        </ul>
+      </section>
+
+      <hr style="opacity:.2; margin:14px 0;" />
+
+      <div class="layout">
+        <!-- LEFT -->
+        <section class="panel">
+          <div class="toolbar">
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <span class="tag" id="countTag">Terms: 0</span>
+              <span class="tag" id="filterTag">Filter: —</span>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <button class="btnMini" id="btnExport" type="button">Export CSV</button>
+              <a class="btnMini" href="../../self/SV01/index.html">Назад до SV01</a>
+            </div>
+          </div>
+
+          <label for="search">Search term</label>
+          <input id="search" type="text" placeholder="Наприклад: bug, severity, regression..." />
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+            <button class="btnMini" id="btnClear" type="button">Clear search</button>
+            <button class="btnMini" id="btnAddOpen" type="button">Add term</button>
+          </div>
+
+          <div class="list" id="termsList" aria-label="Terms list"></div>
+        </section>
+
+        <!-- RIGHT -->
+        <section class="panel rightColFixed">
+          <div class="toolbar">
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <span class="tag" id="quizTag">Quiz: Ready</span>
+              <span class="tag" id="scoreTag">Score: 0</span>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <button class="btnMini" id="btnQuizStart" type="button">Start quiz</button>
+              <button class="btnMini" id="btnQuizReset" type="button">Reset</button>
+            </div>
+          </div>
+
+          <div class="quizBox">
+            <div style="font-weight:900;">Question</div>
+            <div id="questionText" style="opacity:.92; margin-top:6px;">
+              Натисніть “Start quiz” для початку.
+            </div>
+
+            <div class="answers" id="answersBox" style="margin-top:10px;"></div>
+          </div>
+
+          <div class="mono" id="debugBox">
+Network/Debug log:
+— (empty)
+          </div>
+
+          <div class="hintBox">
+            <div style="font-weight:900; margin-bottom:6px;">Підказка для доказів</div>
+            <ul style="margin:0; padding-left:18px;">
+              <li>Console: шукайте помилки після кнопок “Export”, “Reset”, “Start quiz”.</li>
+              <li>Network: фіксуйте статуси запитів (404/500) і Response.</li>
+              <li>Responsive: перевірте 360 px (Device Toolbar).</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div class="toast" id="toast">
+      <div class="t" id="toastTitle">Message</div>
+      <div class="m" id="toastMsg"></div>
+    </div>
+
+    <footer class="footer">
+      <p>Target SV01 • Glossary Trainer • UI + Validation + Logic + Network + Console</p>
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

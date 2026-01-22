@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Target L11 — Registration Form</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+
+  <style>
+    /* Локальні дрібні стилі саме для target (щоб не дублювати styles.css окремим файлом) */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .hint {
+      margin-top: 6px;
+      font-size: 14px;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+    .form-row { margin: 12px 0; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; }
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      outline: none;
+    }
+    input:focus { border-color: rgba(255,255,255,0.32); }
+    .note { font-size: 13px; opacity: 0.85; }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      min-width: 280px;
+      max-width: 420px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.82);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+      display: none;
+      z-index: 9999;
+    }
+    .toast.show { display: block; }
+    .toast .title { font-weight: 700; margin-bottom: 6px; }
+    .toast .msg { font-size: 14px; opacity: 0.95; }
+
+    .result {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      font-size: 12px;
+      opacity: 0.95;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Registration Form (Target L11)</h1>
+      <p class="subtitle">Навчальний target для тест-дизайну: еквівалентні класи та граничні значення</p>
+    </header>
+
+    <main class="card">
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <div>
+          <h2 style="margin:0;">Створення профілю користувача</h2>
+          <p class="note" style="margin:6px 0 0;">
+            Увага: це навчальний сайт, тут <b>можуть</b> бути дефекти. Працюйте як тестувальник.
+          </p>
+        </div>
+        <span class="tag">L11 • Target</span>
+      </div>
+
+      <hr />
+
+      <section class="result">
+        <h3 style="margin:0 0 6px;">Вимоги до введення (Expected Requirements)</h3>
+        <ul style="margin: 0; padding-left: 18px;">
+          <li><b>Age (вік):</b> ціле число від <b>18</b> до <b>60</b> включно.</li>
+          <li><b>Password (пароль):</b> довжина <b>8–16</b> символів, <b>без пробілів</b>.</li>
+          <li><b>Promo Code:</b> необов’язковий, формат <b>AA-2026</b> (2 великі латинські літери, дефіс, 4 цифри).</li>
+        </ul>
+        <p class="note" style="margin:8px 0 0;">
+          Порада для тест-дизайну: визначте еквівалентні класи та перевірте значення на межі і поруч з межею.
+        </p>
+      </section>
+
+      <hr />
+
+      <form id="regForm" novalidate>
+        <div class="grid-2">
+          <div class="form-row">
+            <label for="age">Age (вік)</label>
+            <input id="age" name="age" type="number" inputmode="numeric" placeholder="Наприклад: 18" />
+            <div class="hint">Очікується: 18–60 (ціле число)</div>
+          </div>
+
+          <div class="form-row">
+            <label for="password">Password (пароль)</label>
+            <input id="password" name="password" type="password" placeholder="8–16 символів, без пробілів" />
+            <div class="hint">Очікується: 8–16, без пробілів</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="promo">Promo Code (необов’язково)</label>
+          <input id="promo" name="promo" type="text" placeholder="Наприклад: QA-2026" />
+          <div class="hint">Очікується: AA-2026 (2 великі літери + “-” + 4 цифри)</div>
+        </div>
+
+        <div class="actions" style="margin-top: 10px;">
+          <button class="btn primary" type="submit">Submit</button>
+          <button class="btn" type="button" id="btnReset">Reset</button>
+          <a class="btn" href="../../labs/L11/index.html">Назад до ЛР11</a>
+        </div>
+      </form>
+
+      <section class="result" id="output" aria-live="polite" style="display:none;">
+        <h3 style="margin:0 0 8px;">Результат</h3>
+        <div id="outputText" class="note"></div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast">
+      <div class="title" id="toastTitle">Повідомлення</div>
+      <div class="msg" id="toastMsg"></div>
+    </div>
+
+    <footer class="footer">
+      <p>Target L11 • Form validation • Boundary values + Equivalence classes</p>
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

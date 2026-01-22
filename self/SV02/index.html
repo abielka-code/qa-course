@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SV02 — Розробка чек-листа</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 980px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color: #6b7280; }
+    .btn {
+      display: inline-block; padding: 10px 14px; border-radius: 10px; text-decoration: none;
+      border: 1px solid #111827; background: #111827; color: #fff; font-weight: 600;
+    }
+    .btn.secondary { background: #fff; color: #111827; }
+    .grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    @media (min-width: 860px){ .grid { grid-template-columns: 1.2fr 0.8fr; } }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
+    ul { margin: 8px 0 0 18px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Самостійна робота SV02</h1>
+    <h2>Тема: Розробка чек-листа для тестування веб-застосунку</h2>
+
+    <p class="muted">
+      Роль студента: <b>тестувальник</b>. Код не пишемо — лише перевіряємо, аналізуємо, документуємо.
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Навчитися складати <b>повний чек-лист</b> (20–25+ пунктів) для перевірки веб-інтерфейсу,
+          базової логіки, валідації та помилок у DevTools (Console/Network), а також адаптивності та доступності.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/SV02</code> — “ShopLite: каталог + фільтр + пошук + оформлення”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/SV02/index.html">Відкрити target-сайт SV02</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <h3>Що потрібно здати</h3>
+        <ul>
+          <li><b>Чек-лист</b> (20–25+ пунктів) у таблиці або структурованим списком</li>
+          <li><b>Test Summary Report</b> (Go/No-Go)</li>
+          <li><b>Баг-репорти</b> (4–6 або всі знайдені)</li>
+          <li><b>Evidence</b>: 10+ скріншотів (UI + Console + Network)</li>
+        </ul>
+      </section>
+
+      <aside>
+        <h3>Підказка</h3>
+        <p class="muted">
+          У target-сайті є <b>навчальні дефекти</b> різних типів.
+          Частину видно “очима”, частину — через DevTools.
+        </p>
+        <h3>DevTools</h3>
+        <ul>
+          <li>Console → перевірити помилки після дій</li>
+          <li>Network → перевірити запити під час “Оформити”</li>
+          <li>Responsive → перевірити мобільний режим</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

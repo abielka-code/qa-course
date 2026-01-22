@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Самостійна робота SV03 — Написання тест-кейсів</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 980px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color: #6b7280; }
+    .btn {
+      display: inline-block; padding: 10px 14px; border-radius: 10px; text-decoration: none;
+      border: 1px solid #111827; background: #111827; color: #fff; font-weight: 600;
+    }
+    .btn.secondary { background: #fff; color: #111827; }
+    .grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    @media (min-width: 860px){ .grid { grid-template-columns: 1.2fr 0.8fr; } }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
+    ul { margin: 8px 0 0 18px; }
+    .note { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Самостійна робота SV03</h1>
+    <h2>Тема: Написання тест-кейсів для веб-застосунку</h2>
+
+    <p class="muted">
+      Роль студента: <b>тестувальник</b>. Код не пишемо — лише тестуємо, документуємо та формуємо тестову документацію.
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Навчитися створювати <b>набір тест-кейсів (8–12)</b> для перевірки функціоналу веб-застосунку:
+          додавання задач, зміна статусів, фільтрація, пошук, очищення, а також перевірки DevTools (Console/Network),
+          адаптивності та базової доступності.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/SV03</code> — “TaskFlow: менеджер задач + фільтри + синхронізація”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/SV03/index.html">Відкрити target-сайт SV03</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <h3>Що потрібно здати</h3>
+        <ul>
+          <li><b>Тест-кейси</b> (8–12) у таблиці (ID, Preconditions, Steps, Expected Result)</li>
+          <li><b>Чек-лист</b> (20–25+ пунктів) — як підтримка покриття</li>
+          <li><b>Баг-репорти</b> (4–6 або всі знайдені)</li>
+          <li><b>Test Summary Report</b> з рішенням Go/No-Go</li>
+          <li><b>Evidence</b>: 10+ скріншотів (UI + Console + Network + Responsive)</li>
+        </ul>
+      </section>
+
+      <aside class="note">
+        <h3>Підказка для SV03</h3>
+        <p class="muted" style="margin-top:0;">
+          Тест-кейс — це не просто “перевірка”, а <b>детальний сценарій</b> з кроками та очікуваним результатом.
+        </p>
+        <ul>
+          <li>Не змішуйте в одному кейсі 5 перевірок</li>
+          <li>Додавайте Preconditions (якщо потрібні)</li>
+          <li>Для DevTools робіть окремі кейси</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

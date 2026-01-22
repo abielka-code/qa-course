@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Target L15 — Mini Checkout App</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+
+  <style>
+    .layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 12px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      padding: 12px 14px;
+    }
+
+    .toolbar {
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      font-size: 12px;
+      opacity: 0.95;
+      white-space: nowrap;
+    }
+
+    .btnMini {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btnMini:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    @media (max-width: 520px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    label { display:block; font-weight:700; margin: 10px 0 6px; }
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      outline: none;
+    }
+    input:focus, select:focus { border-color: rgba(255,255,255,0.32); }
+
+    .hintBox {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 13px;
+      opacity: 0.92;
+      line-height: 1.45;
+    }
+
+    .list { display:flex; flex-direction:column; gap:10px; margin-top:10px; }
+    .item {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      padding: 10px 12px;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items:flex-start;
+    }
+    .title { font-weight:800; margin:0; line-height:1.2; }
+    .meta { font-size: 13px; opacity: 0.86; margin-top: 6px; line-height: 1.35; }
+
+    .qtyRow {
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap: wrap;
+      min-width: 140px;
+    }
+    .qtyBtn {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      cursor: pointer;
+    }
+    .qtyVal {
+      min-width: 34px;
+      text-align:center;
+      font-weight:800;
+      padding: 6px 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .summaryLine {
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 6px;
+      opacity: 0.95;
+    }
+    .total {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      font-weight: 900;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      min-width: 300px;
+      max-width: 460px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.82);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+      display: none;
+      z-index: 9999;
+    }
+    .toast.show { display:block; }
+    .toast .title { font-weight: 800; margin-bottom: 6px; }
+    .toast .msg { font-size: 14px; opacity: 0.95; }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      opacity: 0.92;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 10px 12px;
+      border-radius: 14px;
+      margin-top: 10px;
+    }
+
+    /* BUG (Responsive): блок підсумку має фіксовану ширину і може давати скрол на вузьких екранах */
+    .summaryFixed {
+      width: 520px; /* навмисна помилка */
+      max-width: 520px;
+    }
+
+    /* BUG (Accessibility): фокус на кнопках майже не видно */
+    .btnMini:focus, .qtyBtn:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Mini Checkout App (Target L15)</h1>
+      <p class="subtitle">Підсумковий target для повного QA пакета документації</p>
+    </header>
+
+    <main class="card">
+      <div class="toolbar">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <span class="tag" id="authTag">Auth: Guest</span>
+          <span class="tag" id="cartTag">Cart items: 0</span>
+          <span class="tag">L15 • Target</span>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <button class="btnMini" id="btnLogout" type="button">Logout</button>
+          <a class="btnMini" href="../../labs/L15/index.html">Назад до ЛР15</a>
+        </div>
+      </div>
+
+      <section class="hintBox">
+        <div style="font-weight:900; margin-bottom:6px;">Expected Requirements</div>
+        <ul style="margin:0; padding-left:18px;">
+          <li><b>Login:</b> email + password обов’язкові. Email має бути у форматі user@mail.com. Password мінімум 6 символів.</li>
+          <li><b>Cart:</b> кількість товару не може бути < 1, загальна сума рахується коректно.</li>
+          <li><b>Promo code:</b> PROMO10 дає знижку 10% (без залежності від регістру).</li>
+          <li><b>Checkout:</b> без адреси та методу доставки оформлення заборонено.</li>
+          <li><b>Network:</b> при Submit Order формується 1 запит “order API” зі статусом 200.</li>
+          <li><b>Console:</b> після дій користувача не повинно бути JS errors.</li>
+        </ul>
+      </section>
+
+      <hr style="opacity:.2; margin:14px 0;" />
+
+      <div class="layout">
+        <!-- LEFT: App -->
+        <section class="panel">
+          <h2 style="margin:0 0 10px;">Step 1 — Login</h2>
+
+          <div class="grid-2">
+            <div>
+              <label for="email">Email</label>
+              <input id="email" type="text" placeholder="user@mail.com" />
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input id="password" type="password" placeholder="мінімум 6 символів" />
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:10px;">
+            <button class="btnMini" id="btnLogin" type="button">Login</button>
+            <span class="tag" id="loginState">Status: —</span>
+          </div>
+
+          <hr style="opacity:.2; margin:14px 0;" />
+
+          <h2 style="margin:0 0 10px;">Step 2 — Products</h2>
+          <div class="list" id="productsList" aria-label="Products list">
+            <!-- render by JS -->
+          </div>
+
+          <hr style="opacity:.2; margin:14px 0;" />
+
+          <h2 style="margin:0 0 10px;">Step 3 — Checkout</h2>
+          <div class="grid-2">
+            <div>
+              <label for="delivery">Delivery</label>
+              <select id="delivery">
+                <option value="">— Select —</option>
+                <option value="pickup">Pickup</option>
+                <option value="courier">Courier</option>
+              </select>
+            </div>
+            <div>
+              <label for="address">Address</label>
+              <input id="address" type="text" placeholder="City, street, building" />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div>
+              <label for="promo">Promo code</label>
+              <input id="promo" type="text" placeholder="PROMO10" />
+            </div>
+            <div>
+              <label>&nbsp;</label>
+              <button class="btnMini" id="btnApplyPromo" type="button">Apply promo</button>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:10px;">
+            <button class="btnMini" id="btnSubmitOrder" type="button">Submit Order</button>
+            <span class="tag" id="orderState">Order: —</span>
+          </div>
+
+          <div class="mono" id="debugBox">
+Network log:
+— (empty)
+          </div>
+        </section>
+
+        <!-- RIGHT: Summary -->
+        <section class="panel summaryFixed">
+          <h2 style="margin:0 0 10px;">Cart summary</h2>
+
+          <div class="summaryLine">
+            <span>Subtotal</span>
+            <span id="subtotal">$0</span>
+          </div>
+
+          <div class="summaryLine">
+            <span>Discount</span>
+            <span id="discount">$0</span>
+          </div>
+
+          <div class="total">
+            <span>Total</span>
+            <span id="total">$0</span>
+          </div>
+
+          <div style="margin-top:12px;">
+            <button class="btnMini" id="btnClearCart" type="button">Clear cart</button>
+          </div>
+
+          <div class="hintBox" style="margin-top:12px;">
+            <div style="font-weight:900; margin-bottom:6px;">Hints for QA package</div>
+            <ul style="margin:0; padding-left:18px;">
+              <li>Перевірте негативні кейси для Login (порожні поля, неправильний формат email).</li>
+              <li>Перевірте роботу кількості товару і підрахунок Total.</li>
+              <li>Перевірте Promo code в різному регістрі: promo10 / PROMO10.</li>
+              <li>Перевірте Submit Order з порожньою адресою або Delivery “— Select —”.</li>
+              <li>Перевірте Console та Network як докази.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div class="toast" id="toast">
+      <div class="title" id="toastTitle">Message</div>
+      <div class="msg" id="toastMsg"></div>
+    </div>
+
+    <footer class="footer">
+      <p>Target L15 • Mini project • Login + Cart + Promo + Checkout + Network/Console evidence</p>
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

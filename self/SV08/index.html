@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Самостійна робота SV08 — Підготовка підсумкового звіту</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 1020px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color: #6b7280; }
+    .btn {
+      display: inline-block; padding: 10px 14px; border-radius: 10px; text-decoration: none;
+      border: 1px solid #111827; background: #111827; color: #fff; font-weight: 800;
+    }
+    .btn.secondary { background: #fff; color: #111827; }
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 900px){ .grid { grid-template-columns: 1.25fr 0.75fr; } }
+    code { background:#f3f4f6; padding:2px 6px; border-radius:6px; }
+    ul { margin: 8px 0 0 18px; }
+    .note { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; }
+    .kpi { display:grid; gap:10px; grid-template-columns: 1fr; }
+    @media (min-width: 900px){ .kpi { grid-template-columns: 1fr 1fr; } }
+    .box { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Самостійна робота SV08</h1>
+    <h2>Тема: Підготовка підсумкового звіту (Test Summary Report + пакет QA-артефактів)</h2>
+
+    <p class="muted">
+      Роль студента: <b>тестувальник</b>. Код не пишемо — виконуємо тестування, збираємо Evidence, оформлюємо повний комплект документів.
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Підготувати <b>підсумковий пакет тестової документації</b> для навчального веб-застосунку:
+          чек-лист, тест-кейси, баг-репорти, підсумковий звіт <b>Test Summary Report</b> та Go/No-Go рішення.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/SV08</code> — “ReleaseReady: mini-release перевірка (Login + Catalog + Checkout)”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/SV08/index.html">Відкрити target-сайт SV08</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <h3>Пакет, який має здати студент</h3>
+        <div class="kpi">
+          <div class="box">
+            <b>Обов’язково</b>
+            <ul>
+              <li>Чек-лист (20–25+)</li>
+              <li>Тест-кейси (8–12)</li>
+              <li>Баг-репорти (4–6 або всі знайдені)</li>
+              <li>Test Summary Report (повна структура)</li>
+              <li>Evidence: 10+ скріншотів</li>
+            </ul>
+          </div>
+          <div class="box">
+            <b>Додатково (рекомендовано)</b>
+            <ul>
+              <li>Матриця трасованості (Req → TC → Bug)</li>
+              <li>Smoke/Regression перелік</li>
+              <li>Ризики релізу (Top-5)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <aside class="note">
+        <h3>Критерії успіху</h3>
+        <ul>
+          <li>TSR містить Go/No-Go</li>
+          <li>Є докази UI + Network + Console</li>
+          <li>Баги мають severity/priority</li>
+          <li>Звіт оформлено у PDF</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

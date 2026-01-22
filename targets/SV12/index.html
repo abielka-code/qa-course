@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SV12 Target — ReleaseGate</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .wrap { max-width: 1180px; margin: 24px auto; padding: 16px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background:#fff; }
+    .muted { color:#6b7280; }
+    .ok { color:#047857; font-weight:900; }
+    .danger { color:#b91c1c; font-weight:900; }
+
+    label { display:block; font-weight:900; margin-bottom:6px; }
+    input, select, button {
+      width:100%;
+      padding:10px;
+      border-radius:10px;
+      border:1px solid #d1d5db;
+      font: inherit;
+    }
+    button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:900; }
+    button.secondary { background:#fff; color:#111827; }
+
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 980px){ .grid { grid-template-columns: 1fr 1fr; } }
+
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .mini { width:auto; padding:8px 10px; border-radius:10px; }
+
+    .pill { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+    .out { margin-top:10px; padding:10px; border-radius:12px; border:1px solid #e5e7eb; background:#f9fafb; min-height:80px; white-space:pre-wrap; }
+
+    .list { display:grid; gap:10px; margin-top:10px; }
+    .order { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+    .orderTitle { font-weight:900; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+    .chip { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+
+    /* ❗ дефект адаптивності: горизонтальний скрол */
+    body { min-width: 980px; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">ReleaseGate</h1>
+        <div class="muted">Релізний контроль: Auth + Orders + Status (SV12 target)</div>
+      </div>
+      <span class="badge">SV12 target</span>
+    </div>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">1) Auth (Smoke)</h2>
+      <div class="grid">
+        <div class="panel" style="margin-top:0;">
+          <label for="email">Email</label>
+          <input id="email" type="text" placeholder="qa@company.com" />
+
+          <div style="height:10px;"></div>
+
+          <label for="pass">Пароль</label>
+          <input id="pass" type="password" placeholder="password" />
+
+          <div class="row" style="margin-top:12px;">
+            <button id="loginBtn" class="mini">Login</button>
+            <button id="logoutBtn" class="mini secondary">Logout</button>
+            <span class="pill">Token: <b id="tokenView">—</b></span>
+          </div>
+
+          <div id="authStatus" class="muted" style="margin-top:8px;">Auth status: idle</div>
+        </div>
+
+        <div class="panel" style="margin-top:0;">
+          <h2 style="margin-top:0;">2) Orders</h2>
+          <div class="row">
+            <button id="loadOrdersBtn" class="mini secondary">Load orders</button>
+            <button id="createOrderBtn" class="mini">Create order</button>
+          </div>
+
+          <div class="row" style="margin-top:8px;">
+            <span class="pill">Всього: <b id="countView">0</b></span>
+            <span class="pill">Last status: <b id="lastHttp">—</b></span>
+          </div>
+
+          <div id="orders" class="list" aria-label="Список замовлень"></div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:12px;">
+        <h2 style="margin-top:0;">3) Release status (Gate)</h2>
+        <div class="row">
+          <button id="smokeBtn" class="mini secondary">Run smoke</button>
+          <button id="regBtn" class="mini secondary">Run regression</button>
+          <button id="decisionBtn" class="mini">Make Go/No-Go</button>
+        </div>
+
+        <div id="gateStatus" class="muted" style="margin-top:10px;">Gate: not evaluated</div>
+        <div id="out" class="out muted">Результат…</div>
+
+        <p class="muted" style="margin-top:10px; font-size:13px;">
+          Порада: DevTools → Network/Console. Smoke/Regression мають збирати докази стабільності.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Самостійна робота SV10 — UI/UX та Accessibility</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 1060px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color:#6b7280; }
+    .btn {
+      display:inline-block; padding:10px 14px; border-radius:10px; text-decoration:none;
+      border:1px solid #111827; background:#111827; color:#fff; font-weight:900;
+    }
+    .btn.secondary { background:#fff; color:#111827; }
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 920px){ .grid { grid-template-columns: 1.25fr 0.75fr; } }
+    code { background:#f3f4f6; padding:2px 6px; border-radius:6px; }
+    ul { margin:8px 0 0 18px; }
+    .note { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; }
+    .box { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+    .kpi { display:grid; gap:10px; grid-template-columns: 1fr; }
+    @media (min-width: 920px){ .kpi { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Самостійна робота SV10</h1>
+    <h2>Тема: UI/UX та Accessibility (WCAG-орієнтири якості)</h2>
+
+    <p class="muted">
+      Роль студента: <b>тестувальник</b>. Код не пишемо — перевіряємо інтерфейс і доступність:
+      контраст, фокус, клавіатура, читабельність, повідомлення про помилки, зрозумілість форм.
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Навчитися оцінювати якість інтерфейсу за UX-критеріями та перевіряти доступність за WCAG-орієнтирами:
+          <b>Perceivable</b>, <b>Operable</b>, <b>Understandable</b>, <b>Robust</b>.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/SV10</code> — “AccessShop: форма покупки + модальне вікно”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/SV10/index.html">Відкрити target-сайт SV10</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <h3>Що потрібно здати</h3>
+        <div class="kpi">
+          <div class="box">
+            <b>Документи</b>
+            <ul>
+              <li>Чек-лист UI/UX + Accessibility (20–25+)</li>
+              <li>Тест-кейси (8–12) з клавіатурними сценаріями</li>
+              <li>Баг-репорти (4–6 або всі знайдені)</li>
+              <li>Test Summary Report (Go/No-Go)</li>
+            </ul>
+          </div>
+          <div class="box">
+            <b>Evidence</b>
+            <ul>
+              <li>10+ скріншотів UI дефектів</li>
+              <li>Скріншоти фокусу (Tab)</li>
+              <li>Докази недоступної модалки (Esc/Trap)</li>
+              <li>Console/Network за потреби</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <aside class="note">
+        <h3>WCAG-орієнтири (спрощено)</h3>
+        <ul>
+          <li><b>Perceivable:</b> контраст, підписи, читабельність</li>
+          <li><b>Operable:</b> клавіатура, фокус, Esc/Tab, без пасток</li>
+          <li><b>Understandable:</b> зрозумілі повідомлення, валідність форм</li>
+          <li><b>Robust:</b> семантика, aria-атрибути</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>L06 Target — AuthBox</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .wrap { max-width: 1100px; margin: 24px auto; padding: 16px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid #e5e7eb; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color:#6b7280; }
+    .ok { color:#047857; font-weight:700; }
+    .danger { color:#b91c1c; font-weight:700; }
+
+    label { display:block; font-weight: 600; margin-bottom: 6px; }
+    input, button, select {
+      width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d1d5db; font: inherit;
+    }
+    button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:700; }
+    button.secondary { background:#fff; color:#111827; }
+
+    .grid { display:grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 980px){ .grid { grid-template-columns: 0.95fr 1.05fr; } }
+
+    .row { display:flex; gap:10px; flex-wrap:wrap; }
+    .mini { width:auto; padding: 8px 10px; border-radius: 10px; }
+
+    .out {
+      min-height: 240px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px;
+      background: #f9fafb;
+      overflow:auto;
+      white-space: pre-wrap;
+    }
+
+    /* ❗ навчальний дефект адаптивності: зайва мінімальна ширина */
+    .panel { min-width: 760px; }
+
+    .hint { margin-top: 10px; font-size: 13px; color: #6b7280; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
+
+    .tokenLine { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .pill { padding:6px 10px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">AuthBox</h1>
+        <div class="muted">Login → Token → Profile (L06 target)</div>
+      </div>
+      <span class="badge">L06 target</span>
+    </div>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">Авторизація</h2>
+      <p class="muted" style="margin-top:0;">
+        Перевірте сценарії: логін з валідними/невалідними даними, отримання профілю, вихід.
+        Докази — у <b>DevTools → Network/Console</b>.
+      </p>
+
+      <div class="grid">
+        <div class="panel" style="margin-top:0;">
+          <h3 style="margin-top:0;">Login</h3>
+
+          <label for="email">Email</label>
+          <input id="email" type="text" placeholder="qa.student@example.com" />
+
+          <div style="height:10px;"></div>
+
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="password" />
+
+          <div class="row" style="margin-top:12px;">
+            <button id="loginBtn" class="mini">Увійти</button>
+            <button id="logoutBtn" class="mini secondary">Вийти</button>
+          </div>
+
+          <p class="hint">
+            Порада: перевірте пустий пароль, неправильний email, пробіли на початку/кінці.
+          </p>
+        </div>
+
+        <div class="panel" style="margin-top:0;">
+          <h3 style="margin-top:0;">Profile</h3>
+
+          <div class="tokenLine">
+            <span class="pill">Token: <b id="tokenView">—</b></span>
+            <button id="copyBtn" class="mini secondary">Скопіювати token</button>
+          </div>
+
+          <div class="row" style="margin-top:12px;">
+            <button id="profileBtn" class="mini">Отримати профіль</button>
+            <button id="refreshBtn" class="mini secondary">Оновити сторінку</button>
+          </div>
+
+          <div id="status" class="muted" style="margin-top:10px;">Статус: очікування</div>
+          <div id="output" class="out">Результат…</div>
+
+          <p class="hint">
+            Перевіряйте в Network: метод, статус, headers. Особливо — чи передається <code>Authorization</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

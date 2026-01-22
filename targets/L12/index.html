@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Target L12 — Support Ticket</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+
+  <style>
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .form-row { margin: 12px 0; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      outline: none;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: rgba(255,255,255,0.32); }
+
+    .hint { margin-top: 6px; font-size: 13px; opacity: 0.9; line-height: 1.35; }
+    .note { font-size: 13px; opacity: 0.85; }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      min-width: 300px;
+      max-width: 460px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.82);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+      display: none;
+      z-index: 9999;
+    }
+    .toast.show { display: block; }
+    .toast .title { font-weight: 700; margin-bottom: 6px; }
+    .toast .msg { font-size: 14px; opacity: 0.95; }
+
+    .result {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .inline {
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    }
+    .checkbox-row {
+      display:flex; gap:10px; align-items:flex-start;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+    }
+    .checkbox-row input { width: 18px; height: 18px; margin-top: 3px; }
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      font-size: 12px;
+      opacity: 0.95;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Support Ticket (Target L12)</h1>
+      <p class="subtitle">Навчальний target для негативного тестування та валідації введених даних</p>
+    </header>
+
+    <main class="card">
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <div>
+          <h2 style="margin:0;">Створення звернення в підтримку</h2>
+          <p class="note" style="margin:6px 0 0;">
+            Сайт імітує форму звернення до підтримки. Перевірте валідації, негативні сценарії та повідомлення.
+          </p>
+        </div>
+        <span class="tag">L12 • Target</span>
+      </div>
+
+      <hr />
+
+      <section class="result">
+        <h3 style="margin:0 0 6px;">Expected Requirements</h3>
+        <ul style="margin: 0; padding-left: 18px;">
+          <li><b>Full Name</b> — обов’язкове, 2–40 символів.</li>
+          <li><b>Email</b> — обов’язкове, формат e-mail (наприклад, user@mail.com).</li>
+          <li><b>Phone</b> — обов’язкове, тільки цифри, 10–12 символів.</li>
+          <li><b>Topic</b> — обов’язкове.</li>
+          <li><b>Message</b> — обов’язкове, мінімум 10 символів, не може бути лише з пробілів.</li>
+          <li><b>Agreement</b> — без підтвердження “I agree” відправка заборонена.</li>
+        </ul>
+      </section>
+
+      <hr />
+
+      <form id="ticketForm" novalidate>
+        <div class="grid-2">
+          <div class="form-row">
+            <label for="fullName">Full Name</label>
+            <input id="fullName" type="text" placeholder="Наприклад: Ivan Petrenko" />
+            <div class="hint">Очікується: 2–40 символів</div>
+          </div>
+
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" type="text" placeholder="name@example.com" />
+            <div class="hint">Очікується: коректний e-mail</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-row">
+            <label for="phone">Phone</label>
+            <input id="phone" type="text" placeholder="Тільки цифри (10–12)" />
+            <div class="hint">Очікується: 10–12 цифр</div>
+          </div>
+
+          <div class="form-row">
+            <label for="topic">Topic</label>
+            <select id="topic">
+              <option value="">— Select topic —</option>
+              <option value="billing">Billing</option>
+              <option value="bug">Bug report</option>
+              <option value="account">Account</option>
+              <option value="other">Other</option>
+            </select>
+            <div class="hint">Очікується: topic має бути обраний</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Опишіть проблему (мінімум 10 символів)"></textarea>
+          <div class="hint">Очікується: не менше 10 символів, не тільки пробіли</div>
+        </div>
+
+        <div class="form-row">
+          <div class="checkbox-row">
+            <input id="agree" type="checkbox" />
+            <div>
+              <div style="font-weight:600;">I agree with Terms</div>
+              <div class="note">Без підтвердження згоди звернення не має бути відправлене.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions" style="margin-top: 10px;">
+          <button class="btn primary" type="submit">Submit Ticket</button>
+          <button class="btn" type="button" id="btnReset">Reset</button>
+          <a class="btn" href="../../labs/L12/index.html">Назад до ЛР12</a>
+        </div>
+      </form>
+
+      <section class="result" id="output" style="display:none;" aria-live="polite">
+        <h3 style="margin:0 0 8px;">Result</h3>
+        <div id="outputText" class="note"></div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast">
+      <div class="title" id="toastTitle">Message</div>
+      <div class="msg" id="toastMsg"></div>
+    </div>
+
+    <footer class="footer">
+      <p>Target L12 • Negative Testing • Input Validation</p>
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

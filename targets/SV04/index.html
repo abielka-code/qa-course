@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SV04 Target — QuickApply</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .wrap { max-width: 980px; margin: 24px auto; padding: 16px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid #e5e7eb; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+
+    label { display:block; font-weight: 600; margin-bottom: 6px; }
+    input, select, button, textarea {
+      width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d1d5db; font: inherit;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:700; }
+    button.secondary { background:#fff; color:#111827; }
+
+    .grid { display:grid; gap:10px; grid-template-columns: 1fr; }
+    @media (min-width: 860px){ .grid { grid-template-columns: 1fr 1fr; } }
+
+    .muted { color:#6b7280; }
+    .danger { color:#b91c1c; font-weight:700; }
+    .ok { color:#047857; font-weight:700; }
+
+    .row { display:flex; gap:10px; flex-wrap:wrap; }
+    .mini { padding:8px 10px; border-radius:10px; width:auto; }
+
+    /* ❗ навчальний дефект адаптивності: мінімальна ширина блоку */
+    .panel { min-width: 760px; } /* у мобільному буде горизонтальний скрол */
+
+    .hint { margin-top: 10px; font-size: 13px; color: #6b7280; }
+    .errorBox { display:none; padding:10px; border:1px solid #fecaca; background:#fef2f2; border-radius:10px; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">QuickApply</h1>
+        <div class="muted">Форма заявки на участь у події (SV04 target)</div>
+      </div>
+      <span class="badge">SV04 target</span>
+    </div>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">Заявка на подію</h2>
+      <p class="muted" style="margin-top:0;">
+        Заповніть форму та натисніть “Надіслати”.
+        Перевірте негативні сценарії: порожні поля, неправильні формати, крайні значення.
+      </p>
+
+      <div id="errorBox" class="errorBox" role="alert" aria-live="polite"></div>
+
+      <form id="applyForm" novalidate>
+        <div class="grid">
+          <div>
+            <label for="fullName">ПІБ *</label>
+            <input id="fullName" type="text" placeholder="Іваненко Іван Іванович" />
+          </div>
+
+          <div>
+            <label for="email">Email *</label>
+            <input id="email" type="text" placeholder="name@example.com" />
+          </div>
+
+          <div>
+            <label for="phone">Телефон *</label>
+            <input id="phone" type="text" placeholder="+380XXXXXXXXX" />
+          </div>
+
+          <div>
+            <label for="age">Вік *</label>
+            <input id="age" type="number" placeholder="18" />
+          </div>
+
+          <div>
+            <label for="role">Роль *</label>
+            <select id="role">
+              <option value="">Оберіть роль...</option>
+              <option value="student">Студент</option>
+              <option value="teacher">Викладач</option>
+              <option value="guest">Гість</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="topic">Тема участі (коротко)</label>
+            <input id="topic" type="text" placeholder="Напр.: QA-практика" />
+          </div>
+        </div>
+
+        <div style="margin-top:10px;">
+          <label for="comment">Коментар</label>
+          <textarea id="comment" placeholder="Напишіть коротко, чому хочете взяти участь..."></textarea>
+        </div>
+
+        <div class="row" style="margin-top:12px;">
+          <button id="sendBtn" type="submit" class="mini">Надіслати</button>
+          <button id="prefillBtn" type="button" class="mini secondary">Заповнити приклад</button>
+          <button id="resetBtn" type="button" class="mini secondary">Очистити</button>
+        </div>
+      </form>
+
+      <p id="status" class="muted" style="margin-top:10px;">Статус: очікування</p>
+
+      <p class="hint">
+        Порада: відкрийте DevTools → Console та Network.
+        Для негативного сценарію “Надіслати з порожніми даними” уважно подивіться реакцію UI і запит у Network.
+      </p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

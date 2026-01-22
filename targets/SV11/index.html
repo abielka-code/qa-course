@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SV11 Target — TaskFlow</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .wrap { max-width: 1150px; margin: 24px auto; padding: 16px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background:#fff; }
+    .muted { color:#6b7280; }
+    .ok { color:#047857; font-weight:900; }
+    .danger { color:#b91c1c; font-weight:900; }
+
+    label { display:block; font-weight:900; margin-bottom:6px; }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font: inherit;
+    }
+    button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:900; }
+    button.secondary { background:#fff; color:#111827; }
+
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 980px){ .grid { grid-template-columns: 1fr 1fr; } }
+
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .mini { width:auto; padding: 8px 10px; border-radius: 10px; }
+
+    .pill { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+    .out { margin-top:10px; padding:10px; border-radius:12px; border:1px solid #e5e7eb; background:#f9fafb; min-height:70px; white-space: pre-wrap; }
+
+    .list { display:grid; gap:10px; margin-top:10px; }
+    .task { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+    .taskTitle { font-weight:900; }
+    .meta { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+    .chip { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+
+    .btnLine { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .btnLine button { width:auto; }
+
+    /* ❗ дефект UX: блок пошуку занадто вузький на Desktop */
+    #search { max-width: 220px; }
+
+    /* ❗ дефект адаптивності: горизонтальний скрол */
+    body { min-width: 980px; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">TaskFlow</h1>
+        <div class="muted">Міні-трекер задач: створення/фільтр/збереження (SV11 target)</div>
+      </div>
+      <span class="badge">SV11 target</span>
+    </div>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">Створення задачі</h2>
+
+      <div class="grid">
+        <div class="panel" style="margin-top:0;">
+          <label for="title">Назва задачі</label>
+          <input id="title" type="text" placeholder="Напр.: Перевірити форму входу" />
+
+          <div style="height:10px;"></div>
+
+          <label for="priority">Пріоритет</label>
+          <select id="priority">
+            <option value="P1">P1</option>
+            <option value="P2" selected>P2</option>
+            <option value="P3">P3</option>
+          </select>
+
+          <div class="btnLine">
+            <button id="addBtn">Додати</button>
+            <button id="seedBtn" class="secondary">Seed (3 задачі)</button>
+            <button id="saveBtn" class="secondary">Save</button>
+          </div>
+
+          <div id="status" class="muted" style="margin-top:10px;">Статус: idle</div>
+          <div id="out" class="out muted">Результат…</div>
+        </div>
+
+        <div class="panel" style="margin-top:0;">
+          <h3 style="margin-top:0;">Фільтри</h3>
+
+          <label for="filter">Статус</label>
+          <select id="filter">
+            <option value="all" selected>Усі</option>
+            <option value="open">Open</option>
+            <option value="done">Done</option>
+          </select>
+
+          <div style="height:10px;"></div>
+
+          <label for="search">Пошук</label>
+          <input id="search" type="text" placeholder="Пошук по назві..." />
+
+          <div class="btnLine">
+            <button id="applyBtn" class="secondary">Застосувати</button>
+            <button id="resetBtn" class="secondary">Reset</button>
+            <button id="loadBtn" class="secondary">Load</button>
+          </div>
+
+          <p class="muted" style="font-size:13px; margin-top:10px;">
+            Порада: перевірте коректність фільтра/пошуку, збереження в LocalStorage та Console.
+          </p>
+
+          <div class="row" style="margin-top:8px;">
+            <span class="pill">Всього: <b id="countView">0</b></span>
+            <span class="pill">Відображено: <b id="visibleView">0</b></span>
+          </div>
+
+          <div id="list" class="list" aria-label="Список задач"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

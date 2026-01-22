@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SV05 Target — HTTP Lab</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .wrap { max-width: 1100px; margin: 24px auto; padding: 16px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid #e5e7eb; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+
+    .grid { display:grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 980px){ .grid { grid-template-columns: 0.95fr 1.05fr; } }
+
+    label { display:block; font-weight: 600; margin-bottom: 6px; }
+    input, button {
+      width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d1d5db; font: inherit;
+    }
+    button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:700; }
+    button.secondary { background:#fff; color:#111827; }
+
+    .muted { color:#6b7280; }
+    .ok { color:#047857; font-weight:700; }
+    .danger { color:#b91c1c; font-weight:700; }
+
+    .row { display:flex; gap:10px; flex-wrap:wrap; }
+    .mini { width:auto; padding: 8px 10px; border-radius: 10px; }
+
+    .out {
+      min-height: 220px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px;
+      background: #f9fafb;
+      overflow: auto;
+      white-space: pre-wrap;
+    }
+
+    /* ❗ навчальний дефект: зайва мінімальна ширина блоку → мобільний скрол */
+    .panel { min-width: 760px; }
+
+    .hint { margin-top: 10px; font-size: 13px; color: #6b7280; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">HTTP Lab</h1>
+        <div class="muted">Панель перевірки запитів (SV05 target)</div>
+      </div>
+      <span class="badge">SV05 target</span>
+    </div>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">Симуляція API-запитів</h2>
+      <p class="muted" style="margin-top:0;">
+        Натискайте кнопки та перевіряйте у DevTools → Network/Console, що саме відбувається.
+        Основний фокус — <b>статус-коди, заголовки, payload, response</b>.
+      </p>
+
+      <div class="grid">
+        <div>
+          <h3 style="margin-top:0;">Дії</h3>
+
+          <div style="display:grid; gap:10px;">
+            <button id="btnProducts">Завантажити товари (GET)</button>
+            <button id="btnProfile" class="secondary">Отримати профіль (GET)</button>
+
+            <div class="panel" style="margin-top:0;">
+              <h4 style="margin:0 0 8px;">Відправити фідбек</h4>
+              <label for="feedback">Текст</label>
+              <input id="feedback" type="text" placeholder="Напр.: Помилка у формі оплати" />
+              <div class="row" style="margin-top:10px;">
+                <button id="btnFeedback" class="mini">Відправити (має бути POST)</button>
+                <button id="btnPing" class="mini secondary">Ping API</button>
+              </div>
+              <div class="hint">
+                Підказка: перевіряйте, чи є запит у <b>Network</b>, та який метод/статус він має.
+              </div>
+            </div>
+
+            <button id="btnReport" class="secondary">Побудувати звіт (GET)</button>
+          </div>
+
+          <p class="hint">
+            Рекомендовано увімкнути <b>Preserve log</b> у Network, щоб не втрачати історію запитів.
+          </p>
+        </div>
+
+        <div>
+          <h3 style="margin-top:0;">Результат</h3>
+          <div id="status" class="muted">Статус: очікування</div>
+          <div class="out" id="output">Тут буде результат запиту…</div>
+
+          <p class="hint">
+            Докази: зробіть скріншоти вкладок <b>Headers</b> та <b>Response</b> у Network для кожної дії.
+          </p>
+
+          <p class="hint">
+            Локальні файли для успішних GET запитів: <code>mock-products.json</code>, <code>mock-report.json</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

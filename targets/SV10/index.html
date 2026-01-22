@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SV10 Target — AccessShop</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .wrap { max-width: 1100px; margin: 24px auto; padding: 16px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background:#fff; }
+    .muted { color:#6b7280; }
+    .danger { color:#b91c1c; font-weight:900; }
+    .ok { color:#047857; font-weight:900; }
+
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 980px){ .grid { grid-template-columns: 1fr 1fr; } }
+
+    label { display:block; font-weight:800; margin-bottom:6px; }
+
+    input, select, button, textarea {
+      width:100%;
+      padding:10px;
+      border-radius:10px;
+      border:1px solid #d1d5db;
+      font: inherit;
+    }
+
+    button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:900; }
+    button.secondary { background:#fff; color:#111827; }
+
+    /* ❗ дефект доступності: прибрали фокус */
+    *:focus { outline: none; }
+
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .mini { width:auto; padding:8px 10px; border-radius:10px; }
+
+    /* ❗ дефект UI/UX: низький контраст */
+    .lowContrast { color:#c9c9c9; }
+
+    /* ❗ дефект читабельності: занадто малий текст */
+    .tinyText { font-size: 11px; line-height: 1.2; }
+
+    .hint { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:12px; }
+
+    .pill { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+
+    /* MODAL */
+    .modalOverlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .modal {
+      width: min(720px, 100%);
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      padding: 14px;
+    }
+    .modalHeader { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+    .closeBtn {
+      width:auto; padding:8px 10px; border-radius:10px;
+      border:1px solid #111827; background:#fff; color:#111827;
+      font-weight:900;
+    }
+
+    /* ❗ дефект адаптивності: мінімальна ширина спричиняє скрол */
+    body { min-width: 980px; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">AccessShop</h1>
+        <div class="muted">UI/UX + Accessibility перевірка (SV10 target)</div>
+      </div>
+      <span class="badge">SV10 target</span>
+    </div>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">Форма покупки</h2>
+      <p class="muted lowContrast">
+        Заповніть дані й натисніть “Оформити”. Перевірте контраст, фокус, повідомлення про помилки та модальне вікно.
+      </p>
+
+      <div class="grid">
+        <div class="panel" style="margin-top:0;">
+          <h3 style="margin-top:0;">Дані покупця</h3>
+
+          <label for="name">ПІБ</label>
+          <input id="name" type="text" placeholder="Іваненко Іван" />
+
+          <div style="height:10px;"></div>
+
+          <label>Email (label без прив'язки)</label>
+          <!-- ❗ дефект: label не пов’язаний з input (немає for/id зв'язку) -->
+          <input id="email" type="text" placeholder="name@example.com" />
+
+          <div style="height:10px;"></div>
+
+          <label for="phone">Телефон</label>
+          <input id="phone" type="text" placeholder="+380..." />
+
+          <div style="height:10px;"></div>
+
+          <label for="comment">Коментар</label>
+          <textarea id="comment" rows="3" placeholder="Напишіть побажання..."></textarea>
+
+          <p class="tinyText lowContrast" style="margin-top:10px;">
+            Натискаючи кнопку, ви погоджуєтесь з умовами. Текст дуже дрібний і має низький контраст.
+          </p>
+        </div>
+
+        <div class="panel" style="margin-top:0;">
+          <h3 style="margin-top:0;">Параметри</h3>
+
+          <label for="plan">План</label>
+          <select id="plan">
+            <option value="basic" selected>Basic</option>
+            <option value="pro">Pro</option>
+          </select>
+
+          <div style="height:10px;"></div>
+
+          <label for="delivery">Доставка</label>
+          <select id="delivery">
+            <option value="pickup" selected>Самовивіз</option>
+            <option value="courier">Кур’єр</option>
+          </select>
+
+          <div class="hint" style="margin-top:12px;">
+            <div class="row">
+              <span class="pill">Сума: <b id="sumView">0</b> грн</span>
+              <span class="pill">Статус: <b id="statusView">idle</b></span>
+            </div>
+            <div id="msg" class="muted" style="margin-top:8px;">Повідомлення…</div>
+          </div>
+
+          <div class="row" style="margin-top:12px;">
+            <button id="calcBtn" class="mini secondary">Перерахувати</button>
+            <button id="buyBtn" class="mini">Оформити</button>
+            <button id="helpBtn" class="mini secondary">Допомога</button>
+          </div>
+
+          <!-- ❗ дефект UX: кнопка допомоги не пояснює нічого -->
+          <p class="muted tinyText" style="margin-top:10px;">
+            Порада: перевірте Tab-навігацію, чи видно фокус, та чи можна закрити модалку клавішею Esc.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL (навмисно без aria-атрибутів і без focus-trap) -->
+    <div id="overlay" class="modalOverlay">
+      <div class="modal">
+        <div class="modalHeader">
+          <h3 style="margin:0;">Довідка</h3>
+          <button id="closeBtn" class="closeBtn">Закрити</button>
+        </div>
+        <p class="muted">
+          Тут мала б бути корисна інструкція, але вона занадто коротка і не містить конкретики.
+        </p>
+        <div class="row">
+          <button id="fakeLink" class="mini secondary">Посилання</button>
+          <button id="fakeAction" class="mini">Дія</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

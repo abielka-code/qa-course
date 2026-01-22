@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Самостійна робота SV07 — Аналіз дефектів</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 980px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color: #6b7280; }
+    .btn {
+      display: inline-block; padding: 10px 14px; border-radius: 10px; text-decoration: none;
+      border: 1px solid #111827; background: #111827; color: #fff; font-weight: 700;
+    }
+    .btn.secondary { background: #fff; color: #111827; }
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 860px){ .grid { grid-template-columns: 1.2fr 0.8fr; } }
+    code { background:#f3f4f6; padding:2px 6px; border-radius:6px; }
+    ul { margin: 8px 0 0 18px; }
+    .note { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Самостійна робота SV07</h1>
+    <h2>Тема: Аналіз дефектів (класифікація, severity/priority, root cause, рекомендації)</h2>
+
+    <p class="muted">
+      Роль студента: <b>тестувальник</b>. Код не пишемо — лише виявляємо та аналізуємо дефекти, оформлюємо звітність.
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Навчитися виконувати <b>аналіз дефектів</b>: знаходити баги, класифікувати їх за типами,
+          визначати <b>severity</b> та <b>priority</b>, формувати <b>припущення про root cause</b>
+          та пропонувати <b>рекомендації для виправлення</b>. Докази збирати через UI + DevTools.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/SV07</code> — “OrderLite: міні-замовлення (кошик + доставка)”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/SV07/index.html">Відкрити target-сайт SV07</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <h3>Що потрібно здати</h3>
+        <ul>
+          <li><b>Чек-лист</b> (20–25+ пунктів) — включно з аналізом дефектів</li>
+          <li><b>Тест-кейси</b> (8–12)</li>
+          <li><b>Баг-репорти</b> (4–6 або всі знайдені)</li>
+          <li><b>Defect Analysis Sheet</b> (таблиця аналізу дефектів: тип, severity, причина, рекомендація)</li>
+          <li><b>Test Summary Report</b> з Go/No-Go</li>
+          <li><b>Evidence</b>: 10+ скріншотів (UI + Console + Network + Responsive)</li>
+        </ul>
+      </section>
+
+      <aside class="note">
+        <h3>Підказка</h3>
+        <ul>
+          <li>Кожен дефект: <b>що саме</b>, <b>де</b>, <b>як повторити</b>, <b>чому критично</b></li>
+          <li>Додайте <b>root cause hypothesis</b>: неправильна формула, відсутня перевірка, неправильний статус</li>
+          <li>Додайте <b>recommendation</b>: що змінити у логіці/UI/API</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

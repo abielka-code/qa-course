@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Самостійна робота SV11 — Інструменти QA та управління тестуванням</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 1100px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color:#6b7280; }
+    .btn {
+      display:inline-block; padding:10px 14px; border-radius:10px; text-decoration:none;
+      border:1px solid #111827; background:#111827; color:#fff; font-weight:900;
+    }
+    .btn.secondary { background:#fff; color:#111827; }
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 980px){ .grid { grid-template-columns: 1.25fr 0.75fr; } }
+    code { background:#f3f4f6; padding:2px 6px; border-radius:6px; }
+    ul { margin:8px 0 0 18px; }
+    .note { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; }
+    .box { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+    .kpi { display:grid; gap:10px; grid-template-columns: 1fr; }
+    @media (min-width: 980px){ .kpi { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Самостійна робота SV11</h1>
+    <h2>Тема: Інструменти QA та управління тестуванням (трасованість: вимоги ↔ тести ↔ дефекти)</h2>
+
+    <p class="muted">
+      Роль студента: <b>тестувальник</b>. Код не пишемо — працюємо з артефактами QA, статусами та зв’язками (Traceability).
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Навчитися вести тестову документацію як у реальному проєкті:
+          формувати <b>вимоги</b>, прив’язувати до них <b>тест-кейси</b> та <b>дефекти</b>,
+          створювати <b>матрицю трасованості</b>, оцінювати покриття та формувати підсумковий Test Summary Report.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/SV11</code> — “TaskFlow: міні-трекер задач (створення/фільтр/збереження)”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/SV11/index.html">Відкрити target-сайт SV11</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <h3>Що потрібно здати</h3>
+        <div class="kpi">
+          <div class="box">
+            <b>Артефакти управління</b>
+            <ul>
+              <li>Список вимог (8–10) у форматі REQ-XX</li>
+              <li>Traceability Matrix (REQ ↔ TC ↔ BUG)</li>
+              <li>Чек-лист (20–25+)</li>
+              <li>Тест-кейси (8–12) у форматі TC-XX</li>
+              <li>Баг-репорти (4–6) у форматі BUG-XX</li>
+              <li>Test Summary Report (Go/No-Go)</li>
+            </ul>
+          </div>
+          <div class="box">
+            <b>Evidence</b>
+            <ul>
+              <li>10+ скріншотів (UI + Console + Network)</li>
+              <li>Докази LocalStorage/збереження</li>
+              <li>Докази фільтрації/станів задач</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <aside class="note">
+        <h3>Фокус SV11</h3>
+        <ul>
+          <li>Не лише знайти баги, а й <b>прив’язати</b> їх до вимог та тестів</li>
+          <li>Показати <b>покриття</b> (coverage)</li>
+          <li>Оформити <b>статуси</b> тестів (Pass/Fail/Blocked)</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

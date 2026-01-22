@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "Olena Koval", "email": "olena.koval@example.com", "role": "User" },
+  { "id": 2, "name": "Andrii Melnyk", "email": "andrii.melnyk@example.com", "role": "Admin" },
+  { "id": 3, "name": "Iryna Shevchenko", "email": "iryna.shevchenko@example.com", "role": "User" }
+]

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Самостійна робота SV04 — Негативні сценарії тестування</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 980px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color: #6b7280; }
+    .btn {
+      display: inline-block; padding: 10px 14px; border-radius: 10px; text-decoration: none;
+      border: 1px solid #111827; background: #111827; color: #fff; font-weight: 600;
+    }
+    .btn.secondary { background: #fff; color: #111827; }
+    .grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    @media (min-width: 860px){ .grid { grid-template-columns: 1.2fr 0.8fr; } }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
+    ul { margin: 8px 0 0 18px; }
+    .note { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Самостійна робота SV04</h1>
+    <h2>Тема: Негативні сценарії тестування (валідація, помилки, крайні значення)</h2>
+
+    <p class="muted">
+      Роль студента: <b>тестувальник</b>. Код не пишемо — лише перевірка, аналіз та документування дефектів.
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Навчитися формувати і виконувати <b>негативні сценарії</b> тестування для веб-форми
+          (порожні значення, некоректні формати, граничні значення), а також підтверджувати дефекти
+          через <b>DevTools (Console/Network)</b> і перевіряти <b>адаптивність</b>.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/SV04</code> — “QuickApply: заявка на подію (реєстрація)”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/SV04/index.html">Відкрити target-сайт SV04</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <h3>Що потрібно здати</h3>
+        <ul>
+          <li><b>Негативні тест-кейси</b> (8–12) — окремо від позитивних</li>
+          <li><b>Чек-лист</b> (20–25+ пунктів) з негативними перевірками</li>
+          <li><b>Баг-репорти</b> (4–6 або всі знайдені)</li>
+          <li><b>Test Summary Report</b> з рішенням Go/No-Go</li>
+          <li><b>Evidence</b>: 10+ скріншотів (UI + Console + Network + Responsive)</li>
+        </ul>
+      </section>
+
+      <aside class="note">
+        <h3>Підказка</h3>
+        <p class="muted" style="margin-top:0;">
+          Негативний сценарій — це перевірка поведінки системи у випадку помилки користувача або неочікуваних даних.
+        </p>
+        <ul>
+          <li>Порожнє поле</li>
+          <li>Неправильний формат (email/телефон)</li>
+          <li>Надто коротке/довге значення</li>
+          <li>Спецсимволи / пробіли / “0”</li>
+          <li>Перевірки через Console/Network</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

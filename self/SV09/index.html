@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Самостійна робота SV09 — Кросбраузерне тестування та адаптивність</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 1060px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color: #6b7280; }
+    .btn {
+      display: inline-block; padding: 10px 14px; border-radius: 10px; text-decoration: none;
+      border: 1px solid #111827; background: #111827; color: #fff; font-weight: 900;
+    }
+    .btn.secondary { background: #fff; color: #111827; }
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 920px){ .grid { grid-template-columns: 1.25fr 0.75fr; } }
+    code { background:#f3f4f6; padding:2px 6px; border-radius:6px; }
+    ul { margin: 8px 0 0 18px; }
+    .note { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; }
+    .box { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Самостійна робота SV09</h1>
+    <h2>Тема: Кросбраузерне тестування та адаптивність (матриця перевірок, типові дефекти верстки)</h2>
+
+    <p class="muted">
+      Роль студента: <b>тестувальник</b>. Код не пишемо — лише перевіряємо відображення та поведінку UI на різних розмірах і браузерах.
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Навчитися виконувати <b>адаптивне</b> та <b>кросбраузерне тестування</b>:
+          створювати <b>матрицю перевірок</b> (Browsers × Devices × Pages),
+          знаходити типові дефекти верстки (overflow, злам гріду, текстові обрізання, sticky, модалка),
+          фіксувати докази та оформлювати звітність.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/SV09</code> — “ResponsiveLab: лендінг + модалка + меню”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/SV09/index.html">Відкрити target-сайт SV09</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <div class="box" style="margin-top:12px;">
+          <b>Що потрібно здати (обов’язково)</b>
+          <ul>
+            <li>Матриця перевірок (Browsers × Viewports × Checks)</li>
+            <li>Чек-лист (20–25+ пунктів)</li>
+            <li>Тест-кейси (8–12)</li>
+            <li>Баг-репорти (4–6 або всі знайдені)</li>
+            <li>Test Summary Report (Go/No-Go)</li>
+            <li>Evidence: 10+ скріншотів</li>
+          </ul>
+        </div>
+      </section>
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Самостійна робота SV09 — Кросбраузерне тестування та адаптивність</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .card { max-width: 1040px; margin: 24px auto; padding: 16px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .muted { color:#6b7280; }
+    .btn {
+      display:inline-block; padding:10px 14px; border-radius:10px; text-decoration:none;
+      border:1px solid #111827; background:#111827; color:#fff; font-weight:900;
+    }
+    .btn.secondary { background:#fff; color:#111827; }
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 920px){ .grid { grid-template-columns: 1.25fr 0.75fr; } }
+    code { background:#f3f4f6; padding:2px 6px; border-radius:6px; }
+    ul { margin:8px 0 0 18px; }
+    .note { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; }
+    .box { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Самостійна робота SV09</h1>
+    <h2>Тема: Кросбраузерне тестування та адаптивність (матриця перевірок, типові дефекти верстки)</h2>
+
+    <p class="muted">
+      Роль студента: <b>тестувальник</b>. Код не пишемо — виконуємо кросбраузерні та responsive перевірки, документуємо результат.
+    </p>
+
+    <div class="grid">
+      <section>
+        <h3>Мета</h3>
+        <p>
+          Навчитися виконувати <b>кросбраузерне тестування</b> (Chrome/Edge/Firefox) та <b>адаптивність</b>
+          (Mobile/Tablet/Desktop). Підготувати <b>матрицю перевірок</b>, знайти типові дефекти верстки та зібрати Evidence.
+        </p>
+
+        <h3>Об’єкт тестування</h3>
+        <p>
+          Target-сайт: <code>targets/SV09</code> — “ResponsiveHub: landing + pricing + форма”.
+        </p>
+
+        <p style="margin-top:12px;">
+          <a class="btn" href="../../targets/SV09/index.html">Відкрити target-сайт SV09</a>
+          <a class="btn secondary" href="../../index.html" style="margin-left:8px;">Повернутися на головну</a>
+        </p>
+
+        <h3>Що потрібно здати</h3>
+        <ul>
+          <li><b>Матриця кросбраузерних перевірок</b> (Browser × Viewport × Checks)</li>
+          <li><b>Чек-лист</b> (20–25+ пунктів, з responsive та UI)</li>
+          <li><b>Тест-кейси</b> (8–12, включно з різними viewport)</li>
+          <li><b>Баг-репорти</b> (4–6 або всі)</li>
+          <li><b>Test Summary Report</b> (Go/No-Go)</li>
+          <li><b>Evidence</b>: 10+ скріншотів (UI + Responsive + DevTools)</li>
+        </ul>
+      </section>
+
+      <aside class="note">
+        <h3>Рекомендований набір</h3>
+        <div class="box">
+          <b>Браузери</b>
+          <ul>
+            <li>Chrome (остання версія)</li>
+            <li>Edge (остання версія)</li>
+            <li>Firefox (остання версія)</li>
+          </ul>
+        </div>
+        <div class="box" style="margin-top:10px;">
+          <b>Viewport</b>
+          <ul>
+            <li>360×800 (Mobile)</li>
+            <li>768×1024 (Tablet)</li>
+            <li>1366×768 (Desktop)</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
+
+      <aside class="note">
+        <h3>Мінімальна матриця</h3>
+        <ul>
+          <li><b>Браузери:</b> Chrome, Firefox, Edge</li>
+          <li><b>Viewport:</b> 360×800, 768×1024, 1366×768</li>
+          <li><b>Сторінки/екрани:</b> Header, Cards, Modal, Footer</li>
+          <li><b>Докази:</b> UI + Responsive Mode + Console</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

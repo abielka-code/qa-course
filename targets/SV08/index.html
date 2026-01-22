@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SV08 Target — ReleaseReady</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .wrap { max-width: 1200px; margin: 24px auto; padding: 16px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #e5e7eb; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+
+    .muted { color:#6b7280; }
+    .ok { color:#047857; font-weight:800; }
+    .danger { color:#b91c1c; font-weight:800; }
+
+    label { display:block; font-weight:700; margin-bottom:6px; }
+    input, select, button {
+      width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d1d5db; font: inherit;
+    }
+    button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:900; }
+    button.secondary { background:#fff; color:#111827; }
+
+    .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 980px){ .grid { grid-template-columns: 0.95fr 1.05fr; } }
+
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .mini { width:auto; padding: 8px 10px; border-radius: 10px; }
+
+    .cardItem { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+    .title { font-weight:900; }
+    .price { font-weight:900; }
+
+    .list { display:grid; gap:10px; margin-top:10px; }
+    .out { margin-top: 10px; padding: 10px; border-radius: 12px; border: 1px solid #e5e7eb; background:#f9fafb; min-height: 70px; white-space: pre-wrap; }
+
+    /* ❗ адаптивність (навчальний дефект) */
+    .panel { min-width: 840px; }
+
+    .pill { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">ReleaseReady</h1>
+        <div class="muted">Mini-release перевірка: Login + Catalog + Checkout (SV08 target)</div>
+      </div>
+      <span class="badge">SV08 target</span>
+    </div>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">1) Авторизація</h2>
+      <div class="grid">
+        <div class="panel" style="margin-top:0;">
+          <label for="email">Email</label>
+          <input id="email" type="text" placeholder="qa.student@example.com" />
+          <div style="height:10px;"></div>
+
+          <label for="pass">Пароль</label>
+          <input id="pass" type="password" placeholder="password" />
+
+          <div class="row" style="margin-top:12px;">
+            <button id="loginBtn" class="mini">Увійти</button>
+            <button id="logoutBtn" class="mini secondary">Вийти</button>
+            <span class="pill">Token: <b id="tokenView">—</b></span>
+          </div>
+
+          <div id="loginStatus" class="muted" style="margin-top:8px;">Статус: очікування</div>
+        </div>
+
+        <div class="panel" style="margin-top:0;">
+          <h3 style="margin-top:0;">2) Каталог</h3>
+          <div class="row">
+            <button id="loadBtn" class="mini secondary">Завантажити товари</button>
+
+            <select id="sort" class="mini" style="min-width:180px;">
+              <option value="popular" selected>Популярні</option>
+              <option value="priceAsc">Ціна ↑</option>
+              <option value="priceDesc">Ціна ↓</option>
+            </select>
+
+            <button id="applySortBtn" class="mini">Застосувати</button>
+          </div>
+
+          <div id="catalog" class="list" aria-label="Список товарів"></div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:12px;">
+        <h2 style="margin-top:0;">3) Checkout</h2>
+        <div class="row">
+          <span class="pill">У кошику: <b id="countView">0</b></span>
+          <span class="pill">Сума: <b id="sumView">0</b> грн</span>
+        </div>
+
+        <div class="grid" style="margin-top:12px;">
+          <div>
+            <label for="promo">Промокод</label>
+            <input id="promo" type="text" placeholder="Напр.: FREEDEL" />
+          </div>
+          <div>
+            <label for="delivery">Доставка</label>
+            <select id="delivery">
+              <option value="pickup" selected>Самовивіз (0 грн)</option>
+              <option value="courier">Кур’єр (80 грн)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top:10px;">
+          <label for="address">Адреса</label>
+          <input id="address" type="text" placeholder="Місто, вулиця, будинок" />
+        </div>
+
+        <div class="row" style="margin-top:12px;">
+          <button id="checkoutBtn" class="mini">Оформити</button>
+          <button id="clearBtn" class="mini secondary">Очистити</button>
+          <button id="debugBtn" class="mini secondary">Debug</button>
+        </div>
+
+        <div id="orderStatus" class="muted" style="margin-top:10px;">Статус: очікування</div>
+        <div id="out" class="out muted">Результат…</div>
+
+        <p class="muted" style="margin-top:10px; font-size:13px;">
+          Докази: DevTools → Network/Console (особливо після “Оформити”).
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

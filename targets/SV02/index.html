@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SV02 Target — ShopLite</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .wrap { max-width: 1100px; margin: 24px auto; padding: 16px; }
+    .header { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+    .title { display: flex; align-items: baseline; gap: 12px; }
+    .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid #e5e7eb; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .controls { display: grid; gap: 10px; grid-template-columns: 1fr; }
+    @media (min-width: 900px){ .controls { grid-template-columns: 1.2fr 0.8fr 0.8fr 0.6fr; } }
+
+    label { display:block; font-weight: 600; margin-bottom: 6px; }
+    input, select, button { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d1d5db; }
+    button { cursor: pointer; border: 1px solid #111827; background: #111827; color: #fff; font-weight: 700; }
+    button.secondary { background: #fff; color: #111827; }
+
+    .two-col { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 12px; }
+    @media (min-width: 980px){ .two-col { grid-template-columns: 1.1fr 0.9fr; } }
+
+    .tableWrap { overflow: auto; border: 1px solid #e5e7eb; border-radius: 12px; }
+    table { border-collapse: collapse; width: 900px; } /* ❗ спеціально: фіксована ширина → проблема на мобільних */
+    th, td { text-align: left; padding: 10px; border-bottom: 1px solid #f1f5f9; }
+    th { background: #f9fafb; position: sticky; top: 0; }
+
+    .muted { color: #6b7280; }
+    .danger { color: #b91c1c; font-weight: 700; }
+    .ok { color: #047857; font-weight: 700; }
+
+    .hint { margin-top: 10px; font-size: 13px; color: #6b7280; }
+    .cart { display:flex; align-items:center; gap:10px; }
+    .pill { padding: 6px 10px; border-radius: 999px; border: 1px solid #e5e7eb; background: #fff; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="header">
+      <div class="title">
+        <h1 style="margin:0;">ShopLite</h1>
+        <span class="badge">SV02 target</span>
+      </div>
+
+      <div class="cart" aria-label="Панель кошика">
+        <span class="pill">Кошик: <b id="cartCount">0</b></span>
+        <span class="pill">Сума: <b id="cartTotal">0</b> ₴</span>
+      </div>
+    </div>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">Каталог товарів</h2>
+      <p class="muted" style="margin-top:0;">
+        Є пошук, фільтр та сортування. Додайте кілька товарів і спробуйте оформлення замовлення.
+      </p>
+
+      <div class="controls" role="group" aria-label="Фільтри каталогу">
+        <div>
+          <label for="q">Пошук</label>
+          <input id="q" type="text" placeholder="Напр.: ноутбук, Кава, кабель" />
+        </div>
+
+        <div>
+          <label for="category">Категорія</label>
+          <select id="category">
+            <option value="all">Усі</option>
+            <option value="electronics">Електроніка</option>
+            <option value="home">Дім</option>
+            <option value="food">Їжа</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="sort">Сортування</label>
+          <select id="sort">
+            <option value="popular">Популярні</option>
+            <option value="priceAsc">Ціна ↑</option>
+            <option value="priceDesc">Ціна ↓</option>
+          </select>
+        </div>
+
+        <div style="display:flex; gap:10px; align-items:end;">
+          <button id="applyBtn" title="Застосувати">Застосувати</button>
+        </div>
+      </div>
+
+      <div class="hint">
+        Порада: перевірте пошук з різним регістром (напр. “кава” і “Кава”), перевірте мобільний вигляд, відкрийте DevTools.
+      </div>
+
+      <div class="two-col">
+        <div class="panel" style="margin-top:0;">
+          <h3 style="margin-top:0;">Список</h3>
+          <div class="tableWrap">
+            <table aria-label="Таблиця товарів">
+              <thead>
+                <tr>
+                  <th>Назва</th>
+                  <th>Категорія</th>
+                  <th>Ціна</th>
+                  <th>Дія</th>
+                </tr>
+              </thead>
+              <tbody id="rows">
+                <!-- рендериться JS -->
+              </tbody>
+            </table>
+          </div>
+          <p class="muted" id="resultsMeta" style="margin:10px 0 0;">Знайдено: 0</p>
+        </div>
+
+        <div class="panel" style="margin-top:0;">
+          <h3 style="margin-top:0;">Оформлення</h3>
+          <p class="muted" style="margin-top:0;">
+            Заповніть форму та натисніть “Оформити”. Докази перевірки шукайте у Network/Console.
+          </p>
+
+          <form id="checkoutForm">
+            <div style="display:grid; gap:10px;">
+              <div>
+                <label for="name">ПІБ</label>
+                <input id="name" type="text" placeholder="Іваненко Іван Іванович" />
+              </div>
+
+              <div>
+                <label for="phone">Телефон</label>
+                <input id="phone" type="text" placeholder="+380XXXXXXXXX" />
+              </div>
+
+              <div>
+                <label for="address">Адреса</label>
+                <input id="address" type="text" placeholder="Місто, вулиця, будинок" />
+              </div>
+
+              <div>
+                <label for="comment">Коментар (необов’язково)</label>
+                <input id="comment" type="text" placeholder="Напр.: зателефонуйте перед доставкою" />
+              </div>
+
+              <div style="display:flex; gap:10px;">
+                <button id="checkoutBtn" type="submit">Оформити</button>
+                <button id="resetBtn" type="button" class="secondary">Очистити кошик</button>
+              </div>
+            </div>
+          </form>
+
+          <p id="status" class="muted" style="margin-top:10px;">Статус: очікування</p>
+          <p class="hint">
+            ⚠️ Навчальний target: тут спеціально є дефекти. Ваше завдання — скласти чек-лист і задокументувати проблеми.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

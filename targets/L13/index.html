@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Target L13 — Product Catalog</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+
+  <style>
+    /* Навчальний target: стилі локально, щоб не створювати окремий styles.css у targets */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      margin-bottom: 12px;
+    }
+
+    .brand {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      min-width: 200px; /* BUG: фіксована мінімальна ширина */
+    }
+
+    .brand .logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap: nowrap; /* BUG: заборона переносу */
+      overflow: visible;
+    }
+
+    .nav a {
+      display:inline-block;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      text-decoration: none;
+      color: #fff;
+      opacity: 0.95;
+      white-space: nowrap;
+    }
+
+    .searchRow {
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      margin-bottom: 14px;
+    }
+
+    .searchRow .left {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+
+    .searchRow input {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      outline: none;
+      width: 520px; /* BUG: фіксована ширина -> на 360px буде overflow */
+      max-width: 520px;
+    }
+
+    .searchRow input:focus {
+      border-color: rgba(255,255,255,0.32);
+    }
+
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      font-size: 14px;
+      opacity: 0.95;
+      white-space: nowrap;
+    }
+
+    .count {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      font-size: 12px;
+      padding: 0 6px;
+    }
+
+    .catalogGrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    /* BUG: неправильний breakpoint — на 360px залишається 2 колонки (мало місця) */
+    @media (max-width: 900px) {
+      .catalogGrid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* BUG: для маленьких екранів (360px) НЕ зроблено 1 колонку */
+    /* @media (max-width: 520px) { .catalogGrid { grid-template-columns: 1fr; } } */
+
+    .cardItem {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      padding: 12px;
+      min-width: 260px; /* BUG: мінімальна ширина тисне layout */
+      position: relative;
+    }
+
+    .thumb {
+      height: 140px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .metaRow {
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .title {
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    .price {
+      opacity: 0.95;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .desc {
+      opacity: 0.85;
+      font-size: 13px;
+      margin: 8px 0 10px;
+      line-height: 1.35;
+      height: 34px;
+      overflow: hidden;
+    }
+
+    .actionsRow {
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .btnMini {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+    }
+
+    /* BUG (Accessibility): прибраний focus outline -> фокус не видно з клавіатури */
+    .btnMini:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .tag {
+      display:inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      font-size: 12px;
+      opacity: 0.95;
+    }
+
+    .hintBox {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 13px;
+      opacity: 0.92;
+      line-height: 1.4;
+    }
+
+    /* BUG: контейнер занадто широкий => горизонтальний скрол */
+    .fixedWidthWrap {
+      width: 1200px; /* BUG: на мобільному викликає горизонтальний скрол */
+      max-width: 1200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Product Catalog (Target L13)</h1>
+      <p class="subtitle">Перевірка адаптивності, кросбраузерності та базової доступності</p>
+    </header>
+
+    <!-- BUG: фіксована ширина для всієї області каталогу -->
+    <main class="card fixedWidthWrap">
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <div style="font-weight:800;">ShopLite</div>
+            <div style="font-size:12px; opacity:.85;">Catalog demo</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Top navigation">
+          <a href="#catalog">Catalog</a>
+          <a href="#delivery">Delivery</a>
+          <a href="#support">Support</a>
+          <a href="#about">About</a>
+        </nav>
+      </div>
+
+      <section class="searchRow">
+        <div class="left">
+          <div class="pill">
+            Cart
+            <span class="count" id="cartCount">0</span>
+          </div>
+
+          <div class="pill">
+            Screen
+            <span class="count" id="screenLabel">—</span>
+          </div>
+        </div>
+
+        <div class="left">
+          <label for="searchInput" style="font-weight:700;">Search</label>
+          <input id="searchInput" type="text" placeholder="Search products by title..." />
+          <button class="btnMini" id="btnClear" type="button">Clear</button>
+        </div>
+      </section>
+
+      <section class="hintBox">
+        <div style="font-weight:800; margin-bottom:6px;">Expected Requirements</div>
+        <ul style="margin:0; padding-left:18px;">
+          <li>На 360 px інтерфейс не має мати горизонтального скролу.</li>
+          <li>Елементи не повинні перекривати один одного (menu, search, cards).</li>
+          <li>Кнопки мають бути клікабельні та не “ламають” layout.</li>
+          <li>Tab-навігація: фокус має бути видимий на інтерактивних елементах.</li>
+          <li>Grid адаптується: 360 → 1 колонка, 768 → 2 колонки, 1280 → 3–4 колонки.</li>
+        </ul>
+      </section>
+
+      <hr style="opacity:.2; margin:14px 0;" />
+
+      <section id="catalog" class="catalogGrid" aria-label="Catalog list">
+        <article class="cardItem" data-title="Notebook Stand">
+          <div class="thumb">Image</div>
+          <div class="metaRow">
+            <h3 class="title">Notebook Stand</h3>
+            <div class="price">$19</div>
+          </div>
+          <div class="desc">Aluminum stand for laptop. Lightweight and stable.</div>
+          <div class="actionsRow">
+            <button class="btnMini btnAdd" type="button">Add to cart</button>
+            <span class="tag">#desk</span>
+          </div>
+        </article>
+
+        <article class="cardItem" data-title="USB-C Cable">
+          <div class="thumb">Image</div>
+          <div class="metaRow">
+            <h3 class="title">USB-C Cable</h3>
+            <div class="price">$9</div>
+          </div>
+          <div class="desc">Durable cable for charging and data transfer.</div>
+          <div class="actionsRow">
+            <button class="btnMini btnAdd" type="button">Add to cart</button>
+            <span class="tag">#cable</span>
+          </div>
+        </article>
+
+        <article class="cardItem" data-title="Wireless Mouse">
+          <div class="thumb">Image</div>
+          <div class="metaRow">
+            <h3 class="title">Wireless Mouse</h3>
+            <div class="price">$24</div>
+          </div>
+          <div class="desc">Silent clicks and ergonomic shape for everyday use.</div>
+          <div class="actionsRow">
+            <button class="btnMini btnAdd" type="button">Add to cart</button>
+            <span class="tag">#mouse</span>
+          </div>
+        </article>
+
+        <article class="cardItem" data-title="Mechanical Keyboard">
+          <div class="thumb">Image</div>
+          <div class="metaRow">
+            <h3 class="title">Mechanical Keyboard</h3>
+            <div class="price">$59</div>
+          </div>
+          <div class="desc">Tactile switches, compact size, backlight mode.</div>
+          <div class="actionsRow">
+            <button class="btnMini btnAdd" type="button">Add to cart</button>
+            <span class="tag">#keys</span>
+          </div>
+        </article>
+
+        <article class="cardItem" data-title="Webcam HD">
+          <div class="thumb">Image</div>
+          <div class="metaRow">
+            <h3 class="title">Webcam HD</h3>
+            <div class="price">$32</div>
+          </div>
+          <div class="desc">Basic webcam with noise-reduction microphone.</div>
+          <div class="actionsRow">
+            <button class="btnMini btnAdd" type="button">Add to cart</button>
+            <span class="tag">#video</span>
+          </div>
+        </article>
+
+        <article class="cardItem" data-title="Desk Lamp">
+          <div class="thumb">Image</div>
+          <div class="metaRow">
+            <h3 class="title">Desk Lamp</h3>
+            <div class="price">$15</div>
+          </div>
+          <div class="desc">Warm light lamp. 3 brightness modes.</div>
+          <div class="actionsRow">
+            <button class="btnMini btnAdd" type="button">Add to cart</button>
+            <span class="tag">#light</span>
+          </div>
+        </article>
+      </section>
+
+      <div style="margin-top:14px;">
+        <a class="btn" href="../../labs/L13/index.html">Назад до ЛР13</a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Target L13 • Catalog • Responsive + A11y checks</p>
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
