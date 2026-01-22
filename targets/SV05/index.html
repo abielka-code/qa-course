@@ -9,7 +9,7 @@
     .wrap { max-width: 1100px; margin: 24px auto; padding: 16px; }
     .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
     .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid #e5e7eb; }
-    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: var(--card); }
 
     .grid { display:grid; grid-template-columns: 1fr; gap: 12px; }
     @media (min-width: 980px){ .grid { grid-template-columns: 0.95fr 1.05fr; } }
@@ -19,9 +19,9 @@
       width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d1d5db; font: inherit;
     }
     button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:700; }
-    button.secondary { background:#fff; color:#111827; }
+    button.secondary { background: var(--card); color: var(--text); }
 
-    .muted { color:#6b7280; }
+    .muted { color: var(--muted); }
     .ok { color:#047857; font-weight:700; }
     .danger { color:#b91c1c; font-weight:700; }
 
@@ -42,7 +42,7 @@
     .panel { min-width: 760px; }
 
     .hint { margin-top: 10px; font-size: 13px; color: #6b7280; }
-    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
+    code { background: var(--card); padding: 2px 6px; border-radius: 6px; }
   </style>
 </head>
 

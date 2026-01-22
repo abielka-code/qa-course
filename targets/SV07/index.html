@@ -8,10 +8,10 @@
   <style>
     .wrap { max-width: 1150px; margin: 24px auto; padding: 16px; }
     .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
-    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #e5e7eb; }
+    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border: 1px solid var(--line); }
 
-    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
-    .muted { color:#6b7280; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: var(--card); }
+    .muted { color: var(--muted); }
     .ok { color:#047857; font-weight:700; }
     .danger { color:#b91c1c; font-weight:700; }
 
@@ -26,15 +26,15 @@
       border: 1px solid #d1d5db; font: inherit;
     }
     button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:800; }
-    button.secondary { background:#fff; color:#111827; }
+    button.secondary { background: var(--card); color: var(--text); }
 
     .list { display:grid; gap:10px; }
-    .item { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+    .item { border: 1px solid var(--line); border-radius:12px; padding:12px; background: var(--card); }
     .title { font-weight:800; }
     .price { font-weight:900; }
 
     .cartLine { display:flex; justify-content:space-between; gap:10px; margin-top:8px; }
-    .tag { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+    .tag { font-size:12px; padding:3px 8px; border-radius:999px; border: 1px solid var(--line); background: var(--card); }
     .out { margin-top: 10px; padding: 10px; border-radius: 12px; border: 1px solid #e5e7eb; background: #f9fafb; min-height: 70px; white-space: pre-wrap; }
 
     /* ❗ адаптивність (навчальний дефект): мінімальна ширина → горизонтальний скрол */

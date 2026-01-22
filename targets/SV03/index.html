@@ -9,7 +9,7 @@
     .wrap { max-width: 1100px; margin: 24px auto; padding: 16px; }
     .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
     .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid #e5e7eb; }
-    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: var(--card); }
 
     .grid { display:grid; grid-template-columns: 1fr; gap:12px; }
     @media (min-width: 980px){ .grid { grid-template-columns: 0.9fr 1.1fr; } }
@@ -20,27 +20,27 @@
       font: inherit;
     }
     button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:700; }
-    button.secondary { background:#fff; color:#111827; }
+    button.secondary { background: var(--card); color: var(--text); }
 
     .row { display:grid; gap:10px; grid-template-columns: 1fr; }
     @media (min-width: 880px){ .row { grid-template-columns: 1.2fr 0.7fr 0.7fr 0.4fr; } }
 
-    .muted { color:#6b7280; }
+    .muted { color: var(--muted); }
     .danger { color:#b91c1c; font-weight:700; }
     .ok { color:#047857; font-weight:700; }
 
     .stats { display:flex; gap:10px; flex-wrap:wrap; }
-    .pill { padding:6px 10px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+    .pill { padding:6px 10px; border-radius:999px; border: 1px solid var(--line); background: var(--card); }
 
-    .list { margin-top: 10px; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; }
+    .list { margin-top: 10px; border: 1px solid var(--line); border-radius:12px; overflow:hidden; }
     .item { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px; border-top:1px solid #f1f5f9; }
     .item:first-child{ border-top:0; }
     .left { display:flex; gap:10px; align-items:center; min-width: 0; }
     .title { font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width: 520px; }
-    .tag { font-size:12px; padding: 3px 8px; border-radius: 999px; border:1px solid #e5e7eb; }
+    .tag { font-size:12px; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); }
     .actions { display:flex; gap:8px; }
     .mini { padding:8px 10px; border-radius:10px; }
-    .mini.secondary { border:1px solid #111827; background:#fff; color:#111827; }
+    .mini.secondary { border:1px solid #111827; background: var(--card); color: var(--text); }
 
     /* ❗ навчальна "адаптивна" проблема: штучно збільшуємо мінімальну ширину списку */
     .list { min-width: 780px; } /* на мобільних буде горизонтальний скрол */

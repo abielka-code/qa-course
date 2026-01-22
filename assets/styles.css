@@ -1,7 +1,7 @@
 :root{
   color-scheme: dark;
 
-
+  /* Ваші базові змінні (залишив) */
   --bg:#0b1220;
   --card:#0f1b33;
   --text:#e8eefc;
@@ -10,55 +10,64 @@
   --link:#7ab7ff;
   --btn:#2a63ff;
   --btn2:#153b9a;
+
+  /* Додаткові змінні для нових SV02–SV12 */
+  --card2:#0c162d;                  /* фон для note/box */
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --focus: rgba(122,183,255,.60);   /* focus outline */
+  --success:#36d399;
+  --danger:#ff6b6b;
 }
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
+
 body{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height:1.5;
+  line-height:1.55;
 }
 
-a{color:var(--link);text-decoration:none}
+/* ===== Typography (важливо для читабельності) ===== */
+h1,h2,h3{
+  margin:0 0 10px 0;
+  color: var(--text);
+  letter-spacing: .2px;
+}
+
+h1{
+  font-size: 28px;
+  font-weight: 900;
+}
+
+h2{
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+h3{
+  font-size: 16px;
+  font-weight: 900;
+}
+
+p{ margin: 8px 0; }
+
+a{color:var(--link);text-decoration:none;font-weight:800}
 a:hover{text-decoration:underline}
 
-.container{max-width:980px;margin:0 auto;padding:24px}
-
-.card{
-  background: var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+/* Код/теги в описах */
+code{
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:10px;
+  padding:2px 6px;
+  font-weight:800;
 }
 
-.muted{color:var(--muted)}
-
-.list{padding-left:18px}
-.list li{margin:8px 0}
-
-.sep{
-  border:0;
-  border-top:1px solid var(--line);
-  margin:18px 0;
-}
-
-.btn{
-  display:inline-block;
-  background:var(--btn);
-  color:white;
-  padding:10px 14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-}
-.btn:hover{
-  background:var(--btn2);
-  text-decoration:none;
-}
-
-code, pre{
+/* Блоки коду */
+pre{
   background: rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.10);
   border-radius:12px;
@@ -66,11 +75,167 @@ code, pre{
   overflow:auto;
   display:block;
 }
-/* Fix: readable <select> dropdown on dark theme (Chrome/Windows) */
 
-/* Fallback styling for options (works in many browsers, not guaranteed everywhere) */
+/* ===== Layout ===== */
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:24px 16px;
+}
+
+/* Основна “карта” (self сторінки SVXX) */
+.card{
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:20px;
+  box-shadow: var(--shadow);
+}
+
+/* Новий layout для SV02–SV12: ліва/права колонка */
+.grid{
+  display:grid;
+  gap:12px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 980px){
+  .grid{
+    grid-template-columns: 1.25fr 0.75fr;
+    align-items:start;
+  }
+}
+
+/* Секційні блоки “Що здати”, “Evidence”, “Ключові поняття” */
+.box, .note{
+  background: var(--card2);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:12px;
+}
+
+/* Допоміжні кольори */
+.muted{color:var(--muted)}
+
+/* Списки */
+.list{padding-left:18px}
+.list li{margin:8px 0}
+
+/* Розділювач */
+.sep{
+  border:0;
+  border-top:1px solid var(--line);
+  margin:18px 0;
+}
+
+/* ===== Buttons ===== */
+.btn, button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  background:var(--btn);
+  color:white;
+  padding:10px 14px;
+  border-radius:12px;
+
+  border:1px solid rgba(255,255,255,.14);
+  cursor:pointer;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.btn:hover, button:hover{
+  background:var(--btn2);
+  text-decoration:none;
+}
+
+/* Secondary кнопка (для “Повернутися”, “Reset”, “Load”) */
+.btn.secondary, button.secondary{
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color: var(--text);
+}
+.btn.secondary:hover, button.secondary:hover{
+  background: rgba(255,255,255,.10);
+}
+
+/* ===== Focus (Accessibility) ===== */
+:focus{
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible){ outline:none; }
+:focus-visible{
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ===== Pills/Badges (корисно для counters/status) ===== */
+.pill, .badge, .chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font-weight:800;
+}
+
+/* ===== Forms ===== */
+label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:900;
+}
+
+input, select, textarea{
+  width:100%;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+}
+
+input::placeholder, textarea::placeholder{
+  color: rgba(157,176,208,.85);
+}
+
+/* Fix: readable <select> dropdown on dark theme (Chrome/Windows) */
 select option,
 select optgroup {
-  background-color: #0b1220 !important; /* темний фон списку */
-  color: #e6edf3 !important;            /* світлий читабельний текст */
+  background-color: #0b1220 !important;
+  color: #e6edf3 !important;
+}
+
+/* ===== Status helpers ===== */
+.ok{ color: var(--success) !important; font-weight:900; }
+.danger{ color: var(--danger) !important; font-weight:900; }
+
+
+/* === FORCE DARK FOR SELF PAGES (SV02–SV12) === */
+.card, .note, .box{
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-color: var(--line) !important;
+}
+
+.note, .box{
+  background: var(--card2) !important;
+}
+
+/* Додатково — щоб заголовки не “зникали” */
+.card h1, .card h2, .card h3,
+.card p, .card li, .card span, .card small,
+.card label{
+  color: var(--text) !important;
+}
+
+.card .muted{
+  color: var(--muted) !important;
 }

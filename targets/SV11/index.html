@@ -8,10 +8,10 @@
   <style>
     .wrap { max-width: 1150px; margin: 24px auto; padding: 16px; }
     .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
-    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border: 1px solid var(--line); background: var(--card); }
 
-    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background:#fff; }
-    .muted { color:#6b7280; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: var(--card); }
+    .muted { color: var(--muted); }
     .ok { color:#047857; font-weight:900; }
     .danger { color:#b91c1c; font-weight:900; }
 
@@ -24,7 +24,7 @@
       font: inherit;
     }
     button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:900; }
-    button.secondary { background:#fff; color:#111827; }
+    button.secondary { background: var(--card); color: var(--text); }
 
     .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
     @media (min-width: 980px){ .grid { grid-template-columns: 1fr 1fr; } }
@@ -32,14 +32,14 @@
     .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .mini { width:auto; padding: 8px 10px; border-radius: 10px; }
 
-    .pill { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
-    .out { margin-top:10px; padding:10px; border-radius:12px; border:1px solid #e5e7eb; background:#f9fafb; min-height:70px; white-space: pre-wrap; }
+    .pill { font-size:12px; padding:3px 8px; border-radius:999px; border: 1px solid var(--line); background: var(--card); }
+    .out { margin-top:10px; padding:10px; border-radius:12px; border: 1px solid var(--line); background: var(--card2); min-height:70px; white-space: pre-wrap; }
 
     .list { display:grid; gap:10px; margin-top:10px; }
-    .task { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+    .task { border: 1px solid var(--line); border-radius:12px; padding:12px; background: var(--card); }
     .taskTitle { font-weight:900; }
     .meta { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
-    .chip { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+    .chip { font-size:12px; padding:3px 8px; border-radius:999px; border: 1px solid var(--line); background: var(--card); }
 
     .btnLine { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
     .btnLine button { width:auto; }

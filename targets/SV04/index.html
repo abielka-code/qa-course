@@ -9,7 +9,7 @@
     .wrap { max-width: 980px; margin: 24px auto; padding: 16px; }
     .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
     .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid #e5e7eb; }
-    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+    .panel { margin-top: 14px; padding: 14px; border: 1px solid #e5e7eb; border-radius: 12px; background: var(--card); }
 
     label { display:block; font-weight: 600; margin-bottom: 6px; }
     input, select, button, textarea {
@@ -17,12 +17,12 @@
     }
     textarea { min-height: 90px; resize: vertical; }
     button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:700; }
-    button.secondary { background:#fff; color:#111827; }
+    button.secondary { background: var(--card); color: var(--text); }
 
     .grid { display:grid; gap:10px; grid-template-columns: 1fr; }
     @media (min-width: 860px){ .grid { grid-template-columns: 1fr 1fr; } }
 
-    .muted { color:#6b7280; }
+    .muted { color: var(--muted); }
     .danger { color:#b91c1c; font-weight:700; }
     .ok { color:#047857; font-weight:700; }
 

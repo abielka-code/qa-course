@@ -8,11 +8,11 @@
   <style>
     .wrap { max-width: 1180px; margin: 24px auto; padding: 16px; }
     .top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
-    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+    .badge { font-size:12px; padding:4px 8px; border-radius:999px; border: 1px solid var(--line); background: var(--card); }
 
     .nav {
       display:flex; gap:14px; align-items:center; justify-content:space-between;
-      padding: 12px; border:1px solid #e5e7eb; border-radius:12px; background:#fff;
+      padding: 12px; border: 1px solid var(--line); border-radius:12px; background: var(--card);
     }
     .brand { font-weight:900; }
     .links { display:flex; gap:12px; align-items:center; }
@@ -20,14 +20,14 @@
     /* ❗ дефект: links не переносяться і можуть вилазити за межі */
     .links a { text-decoration:none; font-weight:700; white-space: nowrap; }
 
-    .hero { margin-top:14px; padding:14px; border:1px solid #e5e7eb; border-radius:12px; background:#fff; }
+    .hero { margin-top:14px; padding:14px; border: 1px solid var(--line); border-radius:12px; background: var(--card); }
     .grid { display:grid; gap:12px; grid-template-columns: 1fr; }
 
     /* ❗ дефект: фіксована ширина колонки (ламає tablet/mobile) */
     .grid { grid-template-columns: 520px 1fr; }
 
-    .card { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
-    .muted { color:#6b7280; }
+    .card { border: 1px solid var(--line); border-radius:12px; padding:12px; background: var(--card); }
+    .muted { color: var(--muted); }
     .ok { color:#047857; font-weight:900; }
     .danger { color:#b91c1c; font-weight:900; }
 
@@ -36,19 +36,19 @@
     /* ❗ дефект: на мобільному не переходить в 1 колонку */
     .priceGrid { min-width: 980px; }
 
-    .pill { font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; }
+    .pill { font-size:12px; padding:3px 8px; border-radius:999px; border: 1px solid var(--line); background: var(--card); }
 
     label { display:block; font-weight:800; margin-bottom:6px; }
     input, button {
       width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d1d5db; font: inherit;
     }
     button { cursor:pointer; border:1px solid #111827; background:#111827; color:#fff; font-weight:900; }
-    button.secondary { background:#fff; color:#111827; }
+    button.secondary { background: var(--card); color: var(--text); }
 
     .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .mini { width:auto; padding: 8px 10px; border-radius: 10px; }
 
-    .out { margin-top:10px; padding:10px; border-radius:12px; border:1px solid #e5e7eb; background:#f9fafb; min-height:70px; white-space: pre-wrap; }
+    .out { margin-top:10px; padding:10px; border-radius:12px; border: 1px solid var(--line); background: var(--card2); min-height:70px; white-space: pre-wrap; }
 
     /* ❗ дефект: глобальна мінімальна ширина викликає горизонтальний скрол */
     body { min-width: 980px; }
